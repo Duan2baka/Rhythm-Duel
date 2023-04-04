@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour{
     public int InitialX = 2;
     public int InitialY = 2;
-
     private int X;
     private int Y;
     private GameObject player;
