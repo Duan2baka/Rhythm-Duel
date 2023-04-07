@@ -14,5 +14,4 @@ public class RhythmPointManager : MonoBehaviour
     public void init(){
         disabled = false;
     }
-
 }

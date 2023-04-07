@@ -6,13 +6,31 @@ public class FlowManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool exhausted;
+    public bool punish;
+    private ManaManager manaMng; 
     void Start(){
         exhausted = false;
+        manaMng = GameObject.FindGameObjectWithTag("GameController").GetComponent<ManaManager>();
+        punish = false;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void trapManager(){
+
+    }
+    void manaManager(){
+        if(!punish) manaMng.increase(1);
+        punish = false;
+    }
+    void enemyManager(){
+
+    }
+    void LateUpdate(){
+        if(exhausted){
+            enemyManager();
+            trapManager();
+            manaManager();
+            exhausted = false;
+        }
     }
 }

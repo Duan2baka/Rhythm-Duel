@@ -56,7 +56,7 @@ public class RhythmController : MonoBehaviour
             if(entity.transform.position.x < trigger.transform.position.x - OKthreshold){
                 Destroy(entity);
                 flowManager.exhausted = true;
-                manaManager.punish();
+                flowManager.punish = true;
                 Debug.Log("Miss");
             }
         }
@@ -95,8 +95,8 @@ public class RhythmController : MonoBehaviour
             return true;
         }
         Debug.Log("Miss");
+        flowManager.punish = true;
         flowManager.exhausted = true;
-        manaManager.punish();
         return false;
     }
     public void operation(bool valid){
