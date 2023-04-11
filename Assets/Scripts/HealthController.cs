@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class HealthController : MonoBehaviour
 {
     // Start is called before the first frame update
-    Slider slider;
+    public Slider slider;
     public int maxHP = 100;
     private int HP;
 
     void Start(){
         HP = maxHP;
-        slider = GameObject.Find("PlayerHPSlider").GetComponent<Slider>();
         slider.value = HP;
     }
 
