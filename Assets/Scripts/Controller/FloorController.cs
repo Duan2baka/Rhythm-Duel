@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorController : MonoBehaviour
-{
+public class FloorController : MonoBehaviour{
     private GameObject[,,] floor;
     void Start(){
         floor = new GameObject[2,4,4];
@@ -15,7 +14,6 @@ public class FloorController : MonoBehaviour
                 }
     }
 
-    // Update is called once per frame
     void Update()
     {
         

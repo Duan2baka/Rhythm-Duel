@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RhythmPointManager : MonoBehaviour
-{
+public class RhythmPointManager : MonoBehaviour{
     private bool disabled;
     public void disable(){
         disabled = true;

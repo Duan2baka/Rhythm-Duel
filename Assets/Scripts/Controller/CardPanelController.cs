@@ -9,7 +9,6 @@ public class CardPanelController : MonoBehaviour
     DeckController deckController; 
     // ManaManager manaManager;
     bool initialized = false;
-    // Start is called before the first frame update
     void Start(){
         initialized = false;
         deckController = GameObject.FindGameObjectWithTag("GameController").GetComponent<DeckController>();
@@ -28,7 +27,6 @@ public class CardPanelController : MonoBehaviour
         return true;
     }
 
-    // Update is called once per frame
     void Update(){
         if(!initialized) init();
     }

@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositionController : MonoBehaviour
-{
+public class PositionController : MonoBehaviour{
     private Transform tmp;
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         
     }
 
-    // Update is called once per frame
     void Update(){}
     public void set(GameObject obj, GameObject pos){
         tmp = pos.transform.Find("Position");

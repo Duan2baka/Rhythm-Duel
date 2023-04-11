@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
-{
+public class EnemyMovement : MonoBehaviour{
     public int InitialX = 2;
     public int InitialY = 2;
     private int X;
@@ -11,9 +10,7 @@ public class EnemyMovement : MonoBehaviour
     public GameObject enemy;
     private FloorController floorController;
     private PositionController positionController;
-    // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         X = InitialX;
         Y = InitialY;
         
@@ -32,9 +29,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         
     }
 }

@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowManager : MonoBehaviour
-{
-    // Start is called before the first frame update
+public class FlowManager : MonoBehaviour{
     public bool exhausted;
     public bool punish;
     private ManaManager manaMng; 
@@ -14,7 +12,6 @@ public class FlowManager : MonoBehaviour
         punish = false;
     }
 
-    // Update is called once per frame
     void trapManager(){
 
     }

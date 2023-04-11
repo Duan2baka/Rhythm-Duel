@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RhythmController : MonoBehaviour
-{
+public class RhythmController : MonoBehaviour{
     public GameObject prefab;
     public float timeGap = 1f;
     public float speed = 10f;
@@ -31,7 +30,6 @@ public class RhythmController : MonoBehaviour
         manaManager = GameObject.Find("GameController").GetComponent<ManaManager>();
     }
 
-    // Update is called once per frame
     void Update(){
         counter += Time.deltaTime;
         if(counter > timeGap){

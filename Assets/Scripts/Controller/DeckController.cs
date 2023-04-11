@@ -7,14 +7,12 @@ public class DeckController : MonoBehaviour{
     void Start(){
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public Card peak(){
+        /// to be implemented
+        return emptyCard.GetComponent<Card>();
     }
-
     public Card draw(){
+        /// to be implemented
         return emptyCard.GetComponent<Card>();
     }
 }

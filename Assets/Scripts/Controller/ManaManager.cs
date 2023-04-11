@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ManaManager : MonoBehaviour
-{
+public class ManaManager : MonoBehaviour{
     private int startMana = 0;
     private int maxMana = 10;
     private int currentMana;
