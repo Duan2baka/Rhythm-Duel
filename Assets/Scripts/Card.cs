@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface Card{
-    void Cast();
-    int GetCost();
+    public void Cast(ref int currentMana);
+    public int getCost();
+    public Sprite getSprite();
 }

@@ -26,4 +26,8 @@ public class ManaManager : MonoBehaviour
         currentMana += value;
         if(currentMana > maxMana) currentMana = maxMana;
     }
+    
+    public int getMana(){
+        return currentMana;
+    }
 }
