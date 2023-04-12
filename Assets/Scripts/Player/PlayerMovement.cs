@@ -88,4 +88,10 @@ public class PlayerMovement : MonoBehaviour{
             #endif
         }
     }
+    public int getX(){
+        return X;
+    }
+    public int getY(){
+        return Y;
+    }
 }

@@ -6,26 +6,25 @@ public class FlowManager : MonoBehaviour{
     public bool exhausted;
     public bool punish;
     private ManaManager manaMng; 
+    private Enemy enemy;
     void Start(){
         exhausted = false;
         manaMng = GameObject.FindGameObjectWithTag("GameController").GetComponent<ManaManager>();
         punish = false;
+        enemy = GameObject.FindGameObjectWithTag("MainEnemy").GetComponent<Enemy>();
     }
 
-    void trapManager(){
+    void eventManager(){
 
     }
     void manaManager(){
         if(!punish) manaMng.increase(1);
         punish = false;
     }
-    void enemyManager(){
-
-    }
     void LateUpdate(){
         if(exhausted){
-            enemyManager();
-            trapManager();
+            enemy.takeAction();
+            eventManager();
             manaManager();
             exhausted = false;
         }

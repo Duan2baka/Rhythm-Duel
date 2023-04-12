@@ -14,8 +14,7 @@ public class FloorController : MonoBehaviour{
                 }
     }
 
-    void Update()
-    {
+    void Update(){
         
     }
     public bool isAccessable(int X, int Y, bool isPlayer){
@@ -23,7 +22,6 @@ public class FloorController : MonoBehaviour{
             if(X < 1 || X > 3 || Y < 1 || Y > 3) return false;
             return true;
         }
-
         return true;
     }
     

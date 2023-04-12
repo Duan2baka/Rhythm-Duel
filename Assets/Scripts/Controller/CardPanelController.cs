@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardPanelController : MonoBehaviour
-{
+public class CardPanelController : MonoBehaviour{
     Card[] cards;
     CardSlotController[] controllers;
     DeckController deckController; 
