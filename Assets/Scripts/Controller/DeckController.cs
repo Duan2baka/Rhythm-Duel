@@ -13,9 +13,11 @@ public class DeckController : MonoBehaviour{
     void Start(){
         drawArea = GameObject.Find("DrawArea");
         drawList = new List<Card>();
-        if(startList != null)
+        if(startList != null){
+            startList.Shuffle();
             for(int i = 0; i < startList.Count; i ++)
                 drawList.Add(startList[i].GetComponent<Card>());
+        }
         discardList = new List<Card>();
     }
     public Card peak(){
