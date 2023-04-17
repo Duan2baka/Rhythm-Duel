@@ -21,11 +21,15 @@ public class FlowManager : MonoBehaviour{
         if(!punish) manaMng.increase(1);
         punish = false;
     }
+    void floorManager(){
+        
+    }
     void LateUpdate(){
         if(exhausted){
             enemy.takeAction();
             eventManager();
             manaManager();
+            floorManager();
             exhausted = false;
         }
     }
