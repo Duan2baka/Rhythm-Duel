@@ -22,6 +22,7 @@ public class FloorController : MonoBehaviour{
             if(X < 1 || X > 3 || Y < 1 || Y > 3) return false;
             return true;
         }
+        if(!get(X, Y, isPlayer).GetComponent<FloorStatus>().getStatus()) return false;
         return true;
     }
     
