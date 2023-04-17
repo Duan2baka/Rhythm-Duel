@@ -16,7 +16,7 @@ public class HealthController : MonoBehaviour{
     public int getHP(){
         return HP;
     }
-    public void damage(int k){
+    public void takeDamage(int k){
         HP = HP - k;
         slider.value = HP;
     }

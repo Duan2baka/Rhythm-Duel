@@ -7,11 +7,14 @@ public class FlowManager : MonoBehaviour{
     public bool punish;
     private ManaManager manaMng; 
     private Enemy enemy;
+    private FloorController floorController;
     void Start(){
         exhausted = false;
         manaMng = GameObject.FindGameObjectWithTag("GameController").GetComponent<ManaManager>();
+        floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         punish = false;
         enemy = GameObject.FindGameObjectWithTag("MainEnemy").GetComponent<Enemy>();
+
     }
 
     void eventManager(){
@@ -22,7 +25,7 @@ public class FlowManager : MonoBehaviour{
         punish = false;
     }
     void floorManager(){
-        
+        floorController.refresh();
     }
     void LateUpdate(){
         if(exhausted){

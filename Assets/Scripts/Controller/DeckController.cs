@@ -7,11 +7,13 @@ public class DeckController : MonoBehaviour{
     public List<GameObject> startList;
     public emptyCard emptyCard;
     public Card tmpCard;
-    public GameObject drawArea;
+    private GameObject drawArea;
+    private GameObject discardArea;
     private List<Card> drawList;
     private List<Card> discardList;
     void Start(){
         drawArea = GameObject.Find("DrawArea");
+        discardArea = GameObject.Find("DiscardArea");
         drawList = new List<Card>();
         if(startList != null){
             startList.Shuffle();
@@ -26,6 +28,7 @@ public class DeckController : MonoBehaviour{
     void deck_update(){
         /// need to be further implemented
         drawArea.transform.Find("RemainingCard").GetComponent<Text>().text = "" + drawList.Count;
+        discardArea.transform.Find("RemainingCard").GetComponent<Text>().text = "" + discardList.Count;
     }
     public Card draw(){
         if(drawList.Count == 0){ /// need to be further tested
@@ -37,8 +40,11 @@ public class DeckController : MonoBehaviour{
         }
         tmpCard = drawList[0];
         drawList.RemoveAt(0);
-        discardList.Add(tmpCard);
         deck_update();
         return tmpCard;
+    }
+    public void discard(Card card){
+        discardList.Add(card);
+        return;
     }
 }
