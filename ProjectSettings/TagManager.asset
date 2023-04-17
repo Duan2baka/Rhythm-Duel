@@ -8,6 +8,7 @@ TagManager:
   - RhythmPoint
   - TriggerZone
   - Trap
+  - MainEnemy
   layers:
   - Default
   - TransparentFX
