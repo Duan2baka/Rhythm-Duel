@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour{
     private RhythmController rhythmController;
     private FloorController floorController;
     private PositionController positionController;
+    private MouseController mouseController;
 
     void Start(){
         X = InitialX;
@@ -23,13 +24,14 @@ public class PlayerMovement : MonoBehaviour{
         rhythmController = GameObject.FindWithTag("GameController").GetComponent<RhythmController>();
         floorController = GameObject.FindWithTag("GameController").GetComponent<FloorController>();
         positionController = GameObject.FindWithTag("GameController").GetComponent<PositionController>();
+        mouseController = GameObject.FindWithTag("GameController").GetComponent<MouseController>();
         player = GameObject.FindWithTag("Player");
     }
 
     void Update(){// cast card
         
         if(Input.GetMouseButtonDown(0)){
-
+            mouseController.getMouseObject();
         }
         if(Input.GetMouseButtonDown(1)){
             

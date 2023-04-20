@@ -32,12 +32,12 @@ public class FloorStatus : MonoBehaviour{
     public void refresh(){
         gameObject.GetComponent<SpriteRenderer>().enabled = status;
         fix(1);
-        //takeDamage(1);
+        // takeDamage(1);
         Debug.Log("" + status);
         if(status){
             //Debug.Log("" + ratio);
             float ratio = 1f * health / maxHealth;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, ratio, ratio);
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, ratio);
         }
     }
     public void destroy(){

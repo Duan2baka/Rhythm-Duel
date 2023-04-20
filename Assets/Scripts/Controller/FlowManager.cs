@@ -13,7 +13,7 @@ public class FlowManager : MonoBehaviour{
         manaMng = GameObject.FindGameObjectWithTag("GameController").GetComponent<ManaManager>();
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         punish = false;
-        enemy = GameObject.FindGameObjectWithTag("MainEnemy").GetComponent<Enemy>();
+        enemy = GameObject.FindGameObjectWithTag("MainEnemy").transform.parent.gameObject.GetComponent<Enemy>();
 
     }
 

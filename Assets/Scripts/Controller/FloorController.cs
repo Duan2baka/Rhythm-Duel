@@ -7,7 +7,7 @@ public class FloorController : MonoBehaviour{
     private GameObject player;
     private GameObject enemy;
     void Start(){
-        enemy = GameObject.FindGameObjectWithTag("MainEnemy");
+        enemy = GameObject.FindGameObjectWithTag("MainEnemy").transform.parent.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
 
         floor = new GameObject[2,4,4];
@@ -31,10 +31,7 @@ public class FloorController : MonoBehaviour{
         
     }
     public bool isAccessable(int X, int Y, bool isPlayer){
-        if(isPlayer){
-            if(X < 1 || X > 3 || Y < 1 || Y > 3) return false;
-            return true;
-        }
+        /*if(isPlayer)*/ if(X < 1 || X > 3 || Y < 1 || Y > 3) return false;
         if(!get(X, Y, isPlayer).GetComponent<FloorStatus>().getStatus()) return false;
         return true;
     }
