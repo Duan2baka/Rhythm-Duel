@@ -26,7 +26,8 @@ public class PlayerMovement : MonoBehaviour{
         player = GameObject.FindWithTag("Player");
     }
 
-    void Update(){/* cast card
+    void Update(){// cast card
+        
         if(Input.GetMouseButtonDown(0)){
 
         }
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour{
         }
         if(Input.GetKeyDown(KeyCode.E)){
             
-        }*/
+        }
         if(Input.GetKeyDown(KeyCode.A)){
             if(rhythmController.getInput()){
                 if(floorController.isAccessable(X, Y - 1, true)){
