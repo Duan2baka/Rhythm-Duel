@@ -21,6 +21,8 @@ public class CardPanelController : MonoBehaviour{
     public bool playCard(int index, ref int currentMana){
         if(cards[index].getCost() > currentMana) return false;
         cards[index].Cast(ref currentMana);
+        deckController.discard(cards[index]);
+        Debug.Log("discard");
         cards[index] = deckController.draw();
         controllers[index].set(cards[index].getSprite(), cards[index].getCost());
         return true;

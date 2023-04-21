@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour{
     private FloorController floorController;
     private PositionController positionController;
     private MouseController mouseController;
+    private CardPanelController cardPanelController;
+    private ManaManager manaManager;
 
     void Start(){
         X = InitialX;
@@ -25,13 +27,20 @@ public class PlayerMovement : MonoBehaviour{
         floorController = GameObject.FindWithTag("GameController").GetComponent<FloorController>();
         positionController = GameObject.FindWithTag("GameController").GetComponent<PositionController>();
         mouseController = GameObject.FindWithTag("GameController").GetComponent<MouseController>();
+        cardPanelController = GameObject.FindWithTag("CardPanel").GetComponent<CardPanelController>();
+        manaManager = GameObject.FindWithTag("GameController").GetComponent<ManaManager>();
         player = GameObject.FindWithTag("Player");
     }
 
     void Update(){// cast card
         
         if(Input.GetMouseButtonDown(0)){
-            mouseController.getMouseObject();
+            if(rhythmController.getInput()){
+                mouseController.getMouseObject();
+                if(!cardPanelController.playCard(0, ref manaManager.currentMana)){
+                    rhythmController.operation(false);
+                }
+            }
         }
         if(Input.GetMouseButtonDown(1)){
             

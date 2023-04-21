@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ManaManager : MonoBehaviour{
     private int startMana = 0;
     private int maxMana = 10;
-    private int currentMana;
+    public int currentMana;
     private Slider manaBar;
     private Text text;
     void Start(){

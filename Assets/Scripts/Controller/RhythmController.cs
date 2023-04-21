@@ -7,7 +7,7 @@ public class RhythmController : MonoBehaviour{
     public GameObject prefab;
     public float timeGap = 1f;
     public float speed = 10f;
-    public float OKthreshold = 10f;
+    public float OKthreshold = 30f;
     float counter;
 
     private RectTransform  bar;
@@ -98,6 +98,9 @@ public class RhythmController : MonoBehaviour{
         return false;
     }
     public void operation(bool valid){
-        
+        if(!valid){
+            flowManager.punish = true;
+            flowManager.exhausted = true;
+        }
     }
 }
