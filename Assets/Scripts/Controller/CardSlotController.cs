@@ -7,6 +7,7 @@ public class CardSlotController : MonoBehaviour{
     private Text text;
     private bool isActivated;
     private Image image;
+    public string key = "";
     void Start(){
         isActivated = false;
         text = transform.Find("Text").GetComponent<Text>();
@@ -22,6 +23,6 @@ public class CardSlotController : MonoBehaviour{
     }
     public void set(Sprite img, int mana){
         image.sprite = img;
-        text.text = "" + mana;
+        text.text = key + ":" + mana;
     }
 }

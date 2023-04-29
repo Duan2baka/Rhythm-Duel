@@ -39,6 +39,9 @@ public class FloorController : MonoBehaviour{
     public GameObject get(int X, int Y, bool isPlayer){
         // Debug.Log(""+X+Y+isPlayer);
         return floor[(isPlayer ? 1 : 0), X, Y];
+    }    
+    public Vector3 getPositon(int X, int Y, bool isPlayer){
+        return floor[(isPlayer ? 1 : 0), X, Y].transform.Find("Position").position;
     }
     public GameObject FindObjectOn(int X, int Y, bool isPlayer){
         if(isPlayer){

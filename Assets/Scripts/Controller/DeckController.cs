@@ -17,8 +17,10 @@ public class DeckController : MonoBehaviour{
         drawList = new List<Card>();
         if(startList != null){
             startList.Shuffle();
-            for(int i = 0; i < startList.Count; i ++)
+            for(int i = 0; i < startList.Count; i ++){
                 drawList.Add(startList[i].GetComponent<Card>());
+                startList[i].GetComponent<Card>().init();
+            }
         }
         discardList = new List<Card>();
     }

@@ -16,4 +16,7 @@ public class attackCard : MonoBehaviour, Card{
     public Sprite getSprite(){
         return img;
     }
+    public void init(){
+
+    }
 }

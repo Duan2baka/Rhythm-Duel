@@ -14,8 +14,15 @@ public class CardPanelController : MonoBehaviour{
         // manaManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<ManaManager>();
         cards = new Card[4];
         controllers = new CardSlotController[4];
-        for(int i = 0; i < 4; i ++)
+        for(int i = 0; i < 4; i ++){
             controllers[i] = transform.Find("CardSlot" + (i + 1)).GetComponent<CardSlotController>();
+            switch(i){
+                case 0: controllers[i].key = "L"; break;
+                case 1: controllers[i].key = "R"; break;
+                case 2: controllers[i].key = "Q"; break;
+                case 3: controllers[i].key = "E"; break;
+            }
+        }
     }
 
     public bool playCard(int index, ref int currentMana){

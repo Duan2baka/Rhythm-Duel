@@ -20,6 +20,11 @@ public class HealthController : MonoBehaviour{
         HP = HP - k;
         slider.value = HP;
     }
+    public void health(int k){
+        HP = HP + k;
+        if(HP > maxHP) HP = maxHP;
+        slider.value = HP;
+    }
     void checkHP(){
 
     }

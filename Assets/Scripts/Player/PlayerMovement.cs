@@ -42,16 +42,31 @@ public class PlayerMovement : MonoBehaviour{
                 }
             }
         }
-        if(Input.GetMouseButtonDown(1)){
-            
+        else if(Input.GetMouseButtonDown(1)){
+            if(rhythmController.getInput()){
+                mouseController.getMouseObject();
+                if(!cardPanelController.playCard(1, ref manaManager.currentMana)){
+                    rhythmController.operation(false);
+                }
+            }
         }
-        if(Input.GetKeyDown(KeyCode.Q)){
-            
+        else if(Input.GetKeyDown(KeyCode.Q)){
+            if(rhythmController.getInput()){
+                mouseController.getMouseObject();
+                if(!cardPanelController.playCard(2, ref manaManager.currentMana)){
+                    rhythmController.operation(false);
+                }
+            }
         }
-        if(Input.GetKeyDown(KeyCode.E)){
-            
+        else if(Input.GetKeyDown(KeyCode.E)){
+            if(rhythmController.getInput()){
+                mouseController.getMouseObject();
+                if(!cardPanelController.playCard(3, ref manaManager.currentMana)){
+                    rhythmController.operation(false);
+                }
+            }
         }
-        if(Input.GetKeyDown(KeyCode.A)){
+        else if(Input.GetKeyDown(KeyCode.A)){
             if(rhythmController.getInput()){
                 if(floorController.isAccessable(X, Y - 1, true)){
                     // Debug.Log("A pressed");
@@ -62,7 +77,7 @@ public class PlayerMovement : MonoBehaviour{
                 else rhythmController.operation(false);
             }
         }
-        if(Input.GetKeyDown(KeyCode.W)){
+        else if(Input.GetKeyDown(KeyCode.W)){
             if(rhythmController.getInput()){
                 if(floorController.isAccessable(X - 1, Y, true)){
                     X = X - 1;
@@ -72,7 +87,7 @@ public class PlayerMovement : MonoBehaviour{
                 else rhythmController.operation(false);
             }
         }
-        if(Input.GetKeyDown(KeyCode.D)){
+        else if(Input.GetKeyDown(KeyCode.D)){
             if(rhythmController.getInput()){
                 if(floorController.isAccessable(X, Y + 1, true)){
                     Y = Y + 1;
@@ -82,7 +97,7 @@ public class PlayerMovement : MonoBehaviour{
                 else rhythmController.operation(false);
             }
         }
-        if(Input.GetKeyDown(KeyCode.S)){
+        else if(Input.GetKeyDown(KeyCode.S)){
             if(rhythmController.getInput()){
                 if(floorController.isAccessable(X + 1, Y, true)){
                     X = X + 1;
@@ -92,7 +107,7 @@ public class PlayerMovement : MonoBehaviour{
                 else rhythmController.operation(false);
             }
         }
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        else if(Input.GetKeyDown(KeyCode.Escape)){
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.ExitPlaymode();
             #else

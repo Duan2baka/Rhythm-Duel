@@ -10,6 +10,7 @@ TagManager:
   - Trap
   - MainEnemy
   - Enemy
+  - CardPanel
   layers:
   - Default
   - TransparentFX

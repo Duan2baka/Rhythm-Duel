@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263e28d2ef8a30d45aad5b652b4339e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentMana: 0
 --- !u!114 &20489210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,13 +240,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startList:
+  - {fileID: 4231739378960761156, guid: a3b4820e13e2413448a3df8508b82d85, type: 3}
   - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
+  - {fileID: 4231739378960761156, guid: a3b4820e13e2413448a3df8508b82d85, type: 3}
   - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
+  - {fileID: 4231739378960761156, guid: a3b4820e13e2413448a3df8508b82d85, type: 3}
   - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
-  - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
-  - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
-  - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
-  - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
+  - {fileID: 4231739378960761156, guid: a3b4820e13e2413448a3df8508b82d85, type: 3}
   - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
   emptyCard: {fileID: 2225770502028551211, guid: f5044f46d64300947982ac3f255c6096, type: 3}
 --- !u!114 &20489212
@@ -1271,6 +1272,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5446622316188421568, guid: 0a3b03bcfa144184dad34bd435c97a9d, type: 3}
       propertyPath: m_Name
+      value: CardPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446622316188421568, guid: 0a3b03bcfa144184dad34bd435c97a9d, type: 3}
+      propertyPath: m_TagString
       value: CardPanel
       objectReference: {fileID: 0}
     - target: {fileID: 5446622316188421575, guid: 0a3b03bcfa144184dad34bd435c97a9d, type: 3}
