@@ -240,14 +240,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startList:
+  - {fileID: 3017634793106800383, guid: f5c652c24bf0f06448511d822d7f8dd9, type: 3}
+  - {fileID: 3017634793106800383, guid: f5c652c24bf0f06448511d822d7f8dd9, type: 3}
   - {fileID: 4231739378960761156, guid: a3b4820e13e2413448a3df8508b82d85, type: 3}
-  - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
+  - {fileID: 5991751731693576832, guid: 0c762f4b3d91c6047a61cf5052f4e677, type: 3}
   - {fileID: 4231739378960761156, guid: a3b4820e13e2413448a3df8508b82d85, type: 3}
-  - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
+  - {fileID: 5991751731693576832, guid: 0c762f4b3d91c6047a61cf5052f4e677, type: 3}
   - {fileID: 4231739378960761156, guid: a3b4820e13e2413448a3df8508b82d85, type: 3}
-  - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
-  - {fileID: 4231739378960761156, guid: a3b4820e13e2413448a3df8508b82d85, type: 3}
-  - {fileID: 7720756935195536489, guid: f5044f46d64300947982ac3f255c6096, type: 3}
+  - {fileID: 6289525166720660209, guid: 70b7a259f0af83a4ab168872db8b6e31, type: 3}
   emptyCard: {fileID: 2225770502028551211, guid: f5044f46d64300947982ac3f255c6096, type: 3}
 --- !u!114 &20489212
 MonoBehaviour:
@@ -1270,6 +1270,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1850774854}
     m_Modifications:
+    - target: {fileID: 1408588993377199600, guid: 0a3b03bcfa144184dad34bd435c97a9d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602154686321227378, guid: 0a3b03bcfa144184dad34bd435c97a9d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960086604428053475, guid: 0a3b03bcfa144184dad34bd435c97a9d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5446622316188421568, guid: 0a3b03bcfa144184dad34bd435c97a9d, type: 3}
       propertyPath: m_Name
       value: CardPanel
@@ -1373,6 +1385,10 @@ PrefabInstance:
     - target: {fileID: 5446622316188421575, guid: 0a3b03bcfa144184dad34bd435c97a9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9085617142675418372, guid: 0a3b03bcfa144184dad34bd435c97a9d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a3b03bcfa144184dad34bd435c97a9d, type: 3}
