@@ -11,6 +11,8 @@ TagManager:
   - MainEnemy
   - Enemy
   - CardPanel
+  - PausePanel
+  - ChipPanel
   layers:
   - Default
   - TransparentFX

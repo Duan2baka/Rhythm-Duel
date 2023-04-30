@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BombCard : MonoBehaviour, Card{
     public int cost = 4;
+    public int dmg = 20;
     public Sprite img;
     private GameObject player;
     private EnemyMovement enemyMovement;
@@ -24,15 +25,13 @@ public class BombCard : MonoBehaviour, Card{
         int x = playerMovement.getX(), y = playerMovement.getY();
         int ex = enemyMovement.getX(), ey = enemyMovement.getY();
         tmp = mouseController.getMouseObject();
-        if(tmp != null){
-            Debug.Log(tmp.name);
-            GameObject item = Instantiate(itemPrefab, player.transform.Find("middle").transform.position, Quaternion.identity);
-            item.GetComponent<ThrowItem>().throwItem(player.transform.Find("middle").transform.position, tmp.transform.Find("Position").position, tmp);
-        }
-        else{
-            GameObject item = Instantiate(itemPrefab, player.transform.Find("middle").transform.position, Quaternion.identity);
-            item.GetComponent<ThrowItem>().throwItem(player.transform.Find("middle").transform.position, floorController.getPositon(x, y, false), floorController.get(x, y, false));
-        }
+        GameObject item = Instantiate(itemPrefab, player.transform.Find("middle").transform.position, Quaternion.identity);
+        if(tmp != null)
+            item.GetComponent<ThrowItem>().throwItem(player.transform.Find("middle").transform.position,
+            tmp.transform.Find("Position").position, tmp, dmg);
+        else
+            item.GetComponent<ThrowItem>().throwItem(player.transform.Find("middle").transform.position,
+            floorController.getPositon(x, y, false), floorController.get(x, y, false), dmg);
         currentMana -= cost;
         return;
     }
@@ -41,5 +40,11 @@ public class BombCard : MonoBehaviour, Card{
     }
     public Sprite getSprite(){
         return img;
+    }
+    public string getChipName(){
+        return "Bomb Card";
+    }
+    public string getDescription(){
+        return "Throw a bomb at target position.";
     }
 }

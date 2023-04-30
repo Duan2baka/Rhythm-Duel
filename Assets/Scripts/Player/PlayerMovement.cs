@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour{
     private int X;
     private int Y;
     private GameObject player;
-
+    private PauseController pauseController;
     private RhythmController rhythmController;
     private FloorController floorController;
     private PositionController positionController;
@@ -29,11 +29,15 @@ public class PlayerMovement : MonoBehaviour{
         mouseController = GameObject.FindWithTag("GameController").GetComponent<MouseController>();
         cardPanelController = GameObject.FindWithTag("CardPanel").GetComponent<CardPanelController>();
         manaManager = GameObject.FindWithTag("GameController").GetComponent<ManaManager>();
+        pauseController = GameObject.FindWithTag("GameController").GetComponent<PauseController>();
         player = GameObject.FindWithTag("Player");
     }
 
     void Update(){// cast card
-        
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            pauseController.keyDown();
+        }
+        if(pauseController.getStatus()) return;
         if(Input.GetMouseButtonDown(0)){
             if(rhythmController.getInput()){
                 mouseController.getMouseObject();
@@ -107,7 +111,7 @@ public class PlayerMovement : MonoBehaviour{
                 else rhythmController.operation(false);
             }
         }
-        else if(Input.GetKeyDown(KeyCode.Escape)){
+        else if(Input.GetKeyDown(KeyCode.P)){
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.ExitPlaymode();
             #else

@@ -18,4 +18,10 @@ public class emptyCard : MonoBehaviour, Card{
     public void init(){
 
     }
+    public string getChipName(){
+        return "empty Card";
+    }
+    public string getDescription(){
+        return "no effect";
+    }
 }

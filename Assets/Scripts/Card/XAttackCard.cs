@@ -69,4 +69,10 @@ public class XAttackCard : MonoBehaviour, Card{
         GameObject effect = Instantiate(effectPrefab, position, Quaternion.identity);
         Destroy(effect, 0.3f);
     }
+    public string getChipName(){
+        return "Cross gun";
+    }
+    public string getDescription(){
+        return "The attack spreads in four diagonal squares, forming a cross";
+    }
 }

@@ -6,9 +6,10 @@ public class ThrowItem : MonoBehaviour{
     private float throwTime;
     public GameObject effectPrefab;
     private GameObject tmp;
-    private int dmg = 20;
+    private int dmg;
     
-    public void throwItem(Vector3 startPoint, Vector3 endPoint, GameObject targetFloor){
+    public void throwItem(Vector3 startPoint, Vector3 endPoint, GameObject targetFloor,int Dmg){
+        dmg = Dmg;
         transform.localScale = new Vector3(5f, 5f, 5f);
         throwTime = GameObject.FindGameObjectWithTag("GameController").GetComponent<RhythmController>().timeGap;
         StartCoroutine(ThrowItemCoroutine(startPoint, endPoint, throwTime, targetFloor));

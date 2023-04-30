@@ -23,4 +23,10 @@ public class FixPanelCard : MonoBehaviour, Card{
     public Sprite getSprite(){
         return img;
     }
+    public string getChipName(){
+        return "Fix Panel Card";
+    }
+    public string getDescription(){
+        return "Fix all broken floor on your side.";
+    }
 }

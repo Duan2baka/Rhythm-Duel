@@ -7,4 +7,6 @@ public interface Card{
     public int getCost();
     public Sprite getSprite();
     public void init();
+    public string getChipName();
+    public string getDescription();
 }

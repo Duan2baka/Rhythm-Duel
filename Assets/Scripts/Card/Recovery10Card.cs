@@ -20,4 +20,10 @@ public class Recovery10Card : MonoBehaviour, Card{
     public Sprite getSprite(){
         return img;
     }
+    public string getChipName(){
+        return "Recovery 10 Card";
+    }
+    public string getDescription(){
+        return "Get 10 hP.";
+    }
 }

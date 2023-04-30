@@ -19,4 +19,10 @@ public class attackCard : MonoBehaviour, Card{
     public void init(){
 
     }
+    public string getChipName(){
+        return "Attack Card";
+    }
+    public string getDescription(){
+        return "A attack card";
+    }
 }

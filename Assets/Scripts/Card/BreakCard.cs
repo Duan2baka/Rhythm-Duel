@@ -50,4 +50,10 @@ public class BreakCard : MonoBehaviour, Card{
     public Sprite getSprite(){
         return img;
     }
+    public string getChipName(){
+        return "Break Card";
+    }
+    public string getDescription(){
+        return "Break the floor in front of you.";
+    }
 }

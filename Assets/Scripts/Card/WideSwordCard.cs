@@ -52,4 +52,10 @@ public class WideSwordCard : MonoBehaviour, Card{
         GameObject effect = Instantiate(effectPrefab, position, Quaternion.identity);
         Destroy(effect, 0.3f);
     }
+    public string getChipName(){
+        return "Wide sword Card";
+    }
+    public string getDescription(){
+        return "attack the column in front of you.";
+    }
 }

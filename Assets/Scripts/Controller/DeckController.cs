@@ -49,4 +49,7 @@ public class DeckController : MonoBehaviour{
         discardList.Add(card);
         return;
     }
+    public List<GameObject> fullDeck(){
+        return startList;
+    }
 }
