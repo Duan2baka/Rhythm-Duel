@@ -14,29 +14,36 @@ public class PauseController : MonoBehaviour{
     private Text title;
     private Text description;
     private int cnt;
+    private ScrollRect scrollView;
+    private Transform cursorItem;
+    private Transform imagePanel;
+    private Transform selectedObject;
+    private RectTransform selectedContent;
 
     void Start(){
         Time.timeScale = 1f;
         isPaused = false;
         pausePanel = GameObject.FindGameObjectWithTag("PausePanel");
+        imagePanel = pausePanel.transform.Find("Image");
+        cursorItem = imagePanel.Find("CursorImage");
         contentPanel = GameObject.FindGameObjectWithTag("ChipPanel");
         pausePanel.SetActive(false);
         deckController = GameObject.FindGameObjectWithTag("GameController").GetComponent<DeckController>();
         title = pausePanel.transform.Find("Image/Title/Text").GetComponent<Text>();
         description = pausePanel.transform.Find("Image/Title/Description/Text").GetComponent<Text>();
+        scrollView = contentPanel.GetComponent<ScrollRect>();
     }
     void Update(){
         if(!isPaused) return;
         if(Input.GetKeyDown(KeyCode.W)){
             cursor -= 1;
             if(cursor < 0) cursor = 0;
-            updateCursor();
         }
         else if(Input.GetKeyDown(KeyCode.S)){
             cursor += 1;
             if(cursor >= cnt) cursor = cnt - 1;
-            updateCursor();
         }
+        updateCursor();
     }
 
     public void keyDown(){
@@ -69,7 +76,11 @@ public class PauseController : MonoBehaviour{
         return isPaused;
     }
     public void updateCursor(){
-        title.text = contentPanel.transform.Find("Viewport/Content").Find("Item" + cursor).GetComponent<ChipPanelController>().chipName;
-        description.text = contentPanel.transform.Find("Viewport/Content").Find("Item" + cursor).GetComponent<ChipPanelController>().description;
+        selectedObject = contentPanel.transform.Find("Viewport/Content").Find("Item" + cursor);
+        selectedContent = selectedObject.GetComponent<RectTransform>();
+        title.text = selectedObject.GetComponent<ChipPanelController>().chipName;
+        description.text = selectedObject.GetComponent<ChipPanelController>().description;
+
+        cursorItem.position = selectedObject.position - new Vector3(selectedContent.rect.width, 0, 0);
     }
 }
