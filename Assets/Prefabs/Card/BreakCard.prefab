@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 5
   img: {fileID: 21300000, guid: c5ad82b7221455448839183e08c08c03, type: 3}
+  effectPrefab: {fileID: 27276203942658101, guid: 260eed3c450776b48ac13660921bd829, type: 3}
