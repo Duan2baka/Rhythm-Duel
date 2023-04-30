@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class XAttackCard : MonoBehaviour, Card{
-
     public GameObject effectPrefab;
     public int cost = 3;
     private int dmg = 10;
@@ -28,10 +27,8 @@ public class XAttackCard : MonoBehaviour, Card{
             obj.transform.localScale = new Vector3(scale, scale, scale);
 
             tmp = floorController.FindObjectOn(x, y, false);
-            if(tmp != null){
+            if(tmp != null)
                 tmp.GetComponent<HealthController>().takeDamage(dmg);
-            }
-
         }
     }
     public void Cast(ref int currentMana){

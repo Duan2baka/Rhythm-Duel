@@ -29,6 +29,9 @@ public class FloorStatus : MonoBehaviour{
         positionY = y;
         side = _side;
     }
+    public GameObject GetObject(){
+        return floorController.get(positionX, positionY, side);
+    }
     public void refresh(){
         gameObject.GetComponent<SpriteRenderer>().enabled = status;
         fix(1);
