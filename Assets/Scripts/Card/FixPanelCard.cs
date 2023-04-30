@@ -13,8 +13,7 @@ public class FixPanelCard : MonoBehaviour, Card{
     public void Cast(ref int currentMana){
         for(int i = 1; i <= 3; i ++)
             for(int j = 1; j <= 3; j ++)
-                for(int k = 0; k <= 1; k ++)
-                    floorController.get(i, j, k == 1).GetComponent<FloorStatus>().fix(100);
+                floorController.get(i, j, true).GetComponent<FloorStatus>().fix(100);
         currentMana -= cost;
         return;
     }

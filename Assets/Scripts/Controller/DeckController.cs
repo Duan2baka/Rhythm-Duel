@@ -29,8 +29,8 @@ public class DeckController : MonoBehaviour{
     }
     void deck_update(){
         /// need to be further implemented
-        drawArea.transform.Find("RemainingCard").GetComponent<Text>().text = "" + drawList.Count;
-        discardArea.transform.Find("RemainingCard").GetComponent<Text>().text = "" + discardList.Count;
+        drawArea.transform.Find("Panel/RemainingCard").GetComponent<Text>().text = "" + drawList.Count;
+        discardArea.transform.Find("Panel/RemainingCard").GetComponent<Text>().text = "" + discardList.Count;
     }
     public Card draw(){
         if(drawList.Count == 0){ /// need to be further tested

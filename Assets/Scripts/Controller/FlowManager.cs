@@ -8,13 +8,14 @@ public class FlowManager : MonoBehaviour{
     private ManaManager manaMng; 
     private Enemy enemy;
     private FloorController floorController;
+    private int T;
     void Start(){
+        T = 0;
         exhausted = false;
         manaMng = GameObject.FindGameObjectWithTag("GameController").GetComponent<ManaManager>();
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         punish = false;
         enemy = GameObject.FindGameObjectWithTag("MainEnemy").transform.parent.gameObject.GetComponent<Enemy>();
-
     }
 
     void eventManager(){
@@ -29,11 +30,15 @@ public class FlowManager : MonoBehaviour{
     }
     void LateUpdate(){
         if(exhausted){
+            T ++;
             enemy.takeAction();
             eventManager();
             manaManager();
             floorManager();
             exhausted = false;
         }
+    }
+    public int getTimeStamp(){
+        return T;
     }
 }
