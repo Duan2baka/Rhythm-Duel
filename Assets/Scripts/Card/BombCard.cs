@@ -28,10 +28,10 @@ public class BombCard : MonoBehaviour, Card{
         GameObject item = Instantiate(itemPrefab, player.transform.Find("middle").transform.position, Quaternion.identity);
         if(tmp != null)
             item.GetComponent<ThrowItem>().throwItem(player.transform.Find("middle").transform.position,
-            tmp.transform.Find("Position").position, tmp, dmg);
+            tmp.transform.Find("Position").position, tmp, dmg, 0.9f);
         else
             item.GetComponent<ThrowItem>().throwItem(player.transform.Find("middle").transform.position,
-            floorController.getPositon(x, y, false), floorController.get(x, y, false), dmg);
+            floorController.getPositon(x, y, false), floorController.get(x, y, false), dmg, 0.9f);
         currentMana -= cost;
         return;
     }

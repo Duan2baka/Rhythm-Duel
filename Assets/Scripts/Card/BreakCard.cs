@@ -23,7 +23,6 @@ public class BreakCard : MonoBehaviour, Card{
             Vector3 position = floorController.getPositon(x, y + 1, true);
             // Debug.Log(effectPrefab.GetComponent<Renderer>().bounds.size.y);
             GameObject obj = Instantiate(effectPrefab, position + new Vector3(0f, effectPrefab.GetComponent<Renderer>().bounds.size.y / 2f, 0f), Quaternion.identity);
-            obj.layer = 1;
             Vector3 size = obj.GetComponent<Renderer>().bounds.size;
             float scale = floorController.get(x, y + 1, true).GetComponent<Renderer>().bounds.size.x / size.x;
             obj.transform.localScale = new Vector3(scale, scale, scale);
@@ -34,7 +33,6 @@ public class BreakCard : MonoBehaviour, Card{
             Vector3 position = floorController.getPositon(x, 1, false);
             // Debug.Log(effectPrefab.GetComponent<Renderer>().bounds.size.y);
             GameObject obj = Instantiate(effectPrefab, position + new Vector3(0f, effectPrefab.GetComponent<Renderer>().bounds.size.y / 2f, 0f), Quaternion.identity);
-            obj.layer = 1;
             Vector3 size = obj.GetComponent<Renderer>().bounds.size;
             float scale = floorController.get(x, 1, false).GetComponent<Renderer>().bounds.size.x / size.x;
             obj.transform.localScale = new Vector3(scale, scale, scale);

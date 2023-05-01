@@ -7,7 +7,7 @@ public class RhythmController : MonoBehaviour{
     public GameObject prefab;
     public float timeGap = 1f;
     public float speed = 10f;
-    public float OKthreshold = 30f;
+    public float OKthreshold = 50f;
     float counter;
 
     private RectTransform  bar;

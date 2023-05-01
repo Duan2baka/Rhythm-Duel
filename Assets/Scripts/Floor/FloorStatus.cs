@@ -30,13 +30,13 @@ public class FloorStatus : MonoBehaviour{
         side = _side;
     }
     public GameObject GetObject(){
-        return floorController.get(positionX, positionY, side);
+        return floorController.FindObjectOn(positionX, positionY, side);
     }
     public void refresh(){
         gameObject.GetComponent<SpriteRenderer>().enabled = status;
         fix(1);
         // takeDamage(1);
-        Debug.Log("" + status);
+        // Debug.Log("" + status);
         if(status){
             //Debug.Log("" + ratio);
             float ratio = 1f * health / maxHealth;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SampleEnemy : MonoBehaviour, Enemy{
-    private int action = -1;
+    //private int action = -1;
     int idleCounter = 0;
     int X, Y, PlayerX, PlayerY;
     int[] cooldown;
