@@ -6,7 +6,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
     int idleCounter = 0;
     int X, Y, PlayerX, PlayerY;
     public GameObject handPrefab;
-    public GameObject throwablePrefab, shovelPrefab;
+    public GameObject throwablePrefab, shovelPrefab, projectilePrefab;
     private GameObject player;
     PlayerMovement playerMovement;
     EnemyMovement enemyMovement;
@@ -57,7 +57,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                                 for(int k = 0; k < 3; k ++)
                                     if(randomlist[k] == cnt){
                                         floorController.get(i, j, true).GetComponent<FloorStatus>().takeDamage(100);
-                                        Vector3 position = floorController.getPositon(i, j, true);
+                                        Vector3 position = floorController.getPosition(i, j, true);
                                         GameObject obj = Instantiate(shovelPrefab, position +
                                         new Vector3(0f, shovelPrefab.GetComponent<Renderer>().bounds.size.y / 2f, 0f), Quaternion.identity);
                                         Vector3 size = obj.GetComponent<Renderer>().bounds.size;
@@ -71,7 +71,16 @@ public class cursedArmor : MonoBehaviour, Enemy{
                     }
                 }
                 else if(rnd == 2 && cooldown[1] == 0){
-
+                    if(Y == 1){
+                        obj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+                        obj.GetComponent<ProjectileItem>().throwItem(X,
+                        3, true, 10, 1.1f, -1);
+                    }
+                    else{
+                        obj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+                        obj.GetComponent<ProjectileItem>().throwItem(X,
+                        Y - 1, false, 10, 1.1f, -1);
+                    }
                     cooldown[1] = 5;
                 }
                 else if(rnd == 3 && cooldown[2] == 0){
@@ -122,6 +131,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
             }
             else randomMove(X, Y);
         }
+
     }
     private void randomMove(int x, int y){
         Debug.Log("move");

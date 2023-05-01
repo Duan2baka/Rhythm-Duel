@@ -99,10 +99,10 @@ public class RhythmController : MonoBehaviour{
         if(OK){
             flowManager.exhausted = true;
             OK = false;
-            Debug.Log("OK");
+            //Debug.Log("OK");
             return true;
         }
-        Debug.Log("Miss");
+        //Debug.Log("Miss");
         flowManager.punish = true;
         flowManager.exhausted = true;
         return false;

@@ -20,7 +20,7 @@ public class BreakCard : MonoBehaviour, Card{
         int ex = enemyMovement.getX(), ey = enemyMovement.getY();
         if(y < 3){
             floorController.get(x, y + 1, true).GetComponent<FloorStatus>().takeDamage(100);
-            Vector3 position = floorController.getPositon(x, y + 1, true);
+            Vector3 position = floorController.getPosition(x, y + 1, true);
             // Debug.Log(effectPrefab.GetComponent<Renderer>().bounds.size.y);
             GameObject obj = Instantiate(effectPrefab, position + new Vector3(0f, effectPrefab.GetComponent<Renderer>().bounds.size.y / 2f, 0f), Quaternion.identity);
             Vector3 size = obj.GetComponent<Renderer>().bounds.size;
@@ -30,7 +30,7 @@ public class BreakCard : MonoBehaviour, Card{
         }
         else{
             floorController.get(x, 1, false).GetComponent<FloorStatus>().takeDamage(100);
-            Vector3 position = floorController.getPositon(x, 1, false);
+            Vector3 position = floorController.getPosition(x, 1, false);
             // Debug.Log(effectPrefab.GetComponent<Renderer>().bounds.size.y);
             GameObject obj = Instantiate(effectPrefab, position + new Vector3(0f, effectPrefab.GetComponent<Renderer>().bounds.size.y / 2f, 0f), Quaternion.identity);
             Vector3 size = obj.GetComponent<Renderer>().bounds.size;

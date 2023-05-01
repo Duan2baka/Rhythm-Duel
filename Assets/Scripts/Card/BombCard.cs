@@ -31,7 +31,7 @@ public class BombCard : MonoBehaviour, Card{
             tmp.transform.Find("Position").position, tmp, dmg, 0.9f);
         else
             item.GetComponent<ThrowItem>().throwItem(player.transform.Find("middle").transform.position,
-            floorController.getPositon(x, y, false), floorController.get(x, y, false), dmg, 0.9f);
+            floorController.getPosition(x, y, false), floorController.get(x, y, false), dmg, 0.9f);
         currentMana -= cost;
         return;
     }

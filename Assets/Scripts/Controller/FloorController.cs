@@ -40,7 +40,7 @@ public class FloorController : MonoBehaviour{
         // Debug.Log(""+X+Y+isPlayer);
         return floor[(isPlayer ? 1 : 0), X, Y];
     }    
-    public Vector3 getPositon(int X, int Y, bool isPlayer){
+    public Vector3 getPosition(int X, int Y, bool isPlayer){
         return floor[(isPlayer ? 1 : 0), X, Y].transform.Find("Position").position;
     }
     public GameObject FindObjectOn(int X, int Y, bool isPlayer){

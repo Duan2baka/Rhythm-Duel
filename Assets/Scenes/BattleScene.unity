@@ -979,6 +979,7 @@ MonoBehaviour:
   handPrefab: {fileID: 3164848195671475773, guid: 492d65bba5f39f145b02c25da1dc6ac1, type: 3}
   throwablePrefab: {fileID: 4597510845796681786, guid: f18dadd752ddfe749b924abd4fce7efc, type: 3}
   shovelPrefab: {fileID: 8533330135387641395, guid: 28878e4795a8dce4fb214bb66f5614c5, type: 3}
+  projectilePrefab: {fileID: 2327446079330263540, guid: 3cc72dc958a09e04d856c7853d702a42, type: 3}
 --- !u!1 &273082727
 GameObject:
   m_ObjectHideFlags: 0
@@ -5352,7 +5353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2119955096, guid: f7fc68b7644e1384284891c0aa0222be, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 0.26
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 2119955096, guid: f7fc68b7644e1384284891c0aa0222be, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y

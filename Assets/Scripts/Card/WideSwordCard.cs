@@ -16,7 +16,7 @@ public class WideSwordCard : MonoBehaviour, Card{
     }
     private void tryCast(int x, int y, bool playerSide){
         if(x > 0 && x <= 3 && y > 0 && y <= 3){
-            Vector3 position = floorController.getPositon(x, y, playerSide);
+            Vector3 position = floorController.getPosition(x, y, playerSide);
             // Debug.Log(effectPrefab.GetComponent<Renderer>().bounds.size.y);
             GameObject obj = Instantiate(effectPrefab, position + new Vector3(0f, effectPrefab.GetComponent<Renderer>().bounds.size.y / 2f, 0f), Quaternion.identity);
             obj.layer = 1;
