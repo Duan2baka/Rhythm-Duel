@@ -94,7 +94,7 @@ public class RhythmController : MonoBehaviour{
         tmp.GetComponent<RhythmPointManager>().disable();
         tmp.GetComponent<Image>().enabled = false;
         return false;*/
-        Debug.Log("Some Key Pressed");
+        //Debug.Log("Some Key Pressed");
         Destroy(tmp);
         if(OK){
             flowManager.exhausted = true;

@@ -28,6 +28,13 @@ public class EnemyMovement : MonoBehaviour{
             positionController.set(enemy, floorController.get(X, Y, false));
         }
     }
+    public void MoveTo(int x, int y){
+        if(floorController.isAccessable(x, y, false)){
+            X = x;
+            Y = y;
+            positionController.set(enemy, floorController.get(X, Y, false));
+        }
+    }
 
     void Update(){
         

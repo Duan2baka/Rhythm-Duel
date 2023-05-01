@@ -29,7 +29,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
             if(cooldown[i] != 0) cooldown[i] --;
         if(idleCounter != 0){
             idleCounter --;
-            Debug.Log("enemyMovement: idle");
+            //Debug.Log("enemyMovement: idle");
         }
         else{
             X = gameObject.GetComponent<EnemyMovement>().getX();
@@ -44,7 +44,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                     for(int i = 1; i <= 3; i ++)
                         for(int j = 1; j <= 3; j ++)
                             if(floorController.isAccessable(i, j, true)) cnt ++;
-                    if(cnt < 3) randomMove();
+                    if(cnt < 3) randomMove(X, Y);
                     else{
                         randomlist = new int[cnt];
                         for(int i = 0; i < cnt; i ++)
@@ -79,7 +79,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                     for(int i = 1; i <= 3; i ++)
                         for(int j = 1; j <= 3; j ++)
                             if(floorController.isAccessable(i, j, true)) cnt ++;
-                    if(cnt < 3) randomMove();
+                    if(cnt < 3) randomMove(X, Y);
                     else{
                         randomlist = new int[cnt];
                         for(int i = 0; i < cnt; i ++)
@@ -118,14 +118,27 @@ public class cursedArmor : MonoBehaviour, Enemy{
                     }
                     cooldown[3] = 5;
                 }
-                else randomMove();
+                else randomMove(X, Y);
             }
-            else randomMove();
-            
+            else randomMove(X, Y);
         }
-        
     }
-    private void randomMove(){
+    private void randomMove(int x, int y){
+        Debug.Log("move");
+        cnt = 0;
+        for(int i = 1; i <= 3; i ++)
+            for(int j = 1; j <= 3; j ++)
+                if(floorController.isAccessable(i, j, false)) cnt ++;
+        cnt --;
+        int rnd = Random.Range(1, cnt);
+        cnt = 0;
+        for(int i = 1; i <= 3; i ++)
+            for(int j = 1; j <= 3; j ++){
+                if(!floorController.isAccessable(i, j, false)) continue;
+                if(i == x && j == y) continue;
+                cnt ++;
+                if(cnt == rnd) enemyMovement.MoveTo(i, j);
+            }
 
     }
 }
