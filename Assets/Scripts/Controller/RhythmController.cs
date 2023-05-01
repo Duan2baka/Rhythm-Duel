@@ -46,11 +46,21 @@ public class RhythmController : MonoBehaviour{
         tmp = null;
         foreach(GameObject entity in Rhythms){
             entity.transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+            
+            Rect rect1 = entity.GetComponent<RectTransform>().rect;
+            Rect rect2 = trigger.GetComponent<RectTransform>().rect;
+            if(rect1.Overlaps(rect2)){
+                OK = true;
+                if(tmp == null) tmp = entity;
+                else if(entity.transform.position.x < tmp.transform.position.x) tmp = entity;
+            }/*
             if(Mathf.Abs(Vector3.Distance(trigger.transform.position, entity.transform.position)) <= OKthreshold){
                 OK = true;
                 if(tmp == null) tmp = entity;
                 else if(entity.transform.position.x < tmp.transform.position.x) tmp = entity;
-            }
+            }*/
+            
+            
             if(entity.transform.position.x < trigger.transform.position.x - OKthreshold){
                 Destroy(entity);
                 flowManager.exhausted = true;

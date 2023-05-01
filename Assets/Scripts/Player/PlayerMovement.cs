@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour{
         Y = InitialY;
         
         // Debug.Log(tmp.transform.position);
-        transform.position = GameObject.Find("Floor 1" + InitialX + InitialY).transform.Find("Position").position + new Vector3(0, GetComponent<BoxCollider2D>().bounds.size.y / 2.0f, 0);
+        transform.position = GameObject.Find("Floor 1" + InitialX + InitialY).transform.Find("Position").position/* + new Vector3(0, GetComponent<BoxCollider2D>().bounds.size.y / 2.0f, 0)*/;
 
         rhythmController = GameObject.FindWithTag("GameController").GetComponent<RhythmController>();
         floorController = GameObject.FindWithTag("GameController").GetComponent<FloorController>();

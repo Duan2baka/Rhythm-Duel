@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour{
         Y = InitialY;
         
         // Debug.Log(tmp.transform.position);
-        transform.position = GameObject.Find("Floor 0" + InitialX + InitialY).transform.Find("Position").position + new Vector3(0, GetComponent<BoxCollider2D>().bounds.size.y / 2.0f, 0);
+        transform.position = GameObject.Find("Floor 0" + InitialX + InitialY).transform.Find("Position").position/* + new Vector3(0, GetComponent<BoxCollider2D>().bounds.size.y / 2.0f, 0)*/;
 
         floorController = GameObject.FindWithTag("GameController").GetComponent<FloorController>();
         positionController = GameObject.FindWithTag("GameController").GetComponent<PositionController>();
