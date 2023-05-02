@@ -81,7 +81,7 @@ public class Ghost : MonoBehaviour, Enemy{
                         obj.GetComponent<ProjectileItem>().throwItem(X,
                         3, true, 10, 1.1f, -1, true);
                     }
-                    else{asd
+                    else{
                         obj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                         obj.GetComponent<ProjectileItem>().throwItem(X,
                         Y - 1, false, 10, 1.1f, -1, true);
