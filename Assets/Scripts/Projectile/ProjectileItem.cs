@@ -7,7 +7,7 @@ public class ProjectileItem : MonoBehaviour{
     private GameObject tmp, obj;
     private FloorController floorController;
     private int dmg;
-    public void throwItem(int startX, int startY, bool startSide,int Dmg, float timeScale, int direction){
+    public void throwItem(int startX, int startY, bool startSide,int Dmg, float timeScale, int direction, bool damageArea){
         dmg = Dmg;
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         tmp = floorController.get(startX, startY, startSide);
@@ -15,9 +15,9 @@ public class ProjectileItem : MonoBehaviour{
         transform.position = floorController.getPosition(startX, startY, startSide);
         //transform.localScale = new Vector3(5f, 5f, 5f);
         moveTime = GameObject.FindGameObjectWithTag("GameController").GetComponent<RhythmController>().timeGap * timeScale;
-        StartCoroutine(ThrowItemCoroutine(startX, startY, startSide, moveTime, direction));
+        StartCoroutine(ThrowItemCoroutine(startX, startY, startSide, moveTime, direction, damageArea));
     }
-    IEnumerator ThrowItemCoroutine(int currentX, int currentY, bool currentSide, float time, int direction){
+    IEnumerator ThrowItemCoroutine(int currentX, int currentY, bool currentSide, float time, int direction, bool damageArea){
         while(true){
             float t = 0;
             while (t < time){
@@ -46,7 +46,7 @@ public class ProjectileItem : MonoBehaviour{
             }
             tmp = floorController.get(currentX, currentY, currentSide);
             if(!tmp.GetComponent<FloorStatus>().getStatus()) break;
-            if((direction == -1 && currentSide == true) || (direction == 1 && currentSide == false)){
+            if(currentSide == damageArea){
                 obj = floorController.FindObjectOn(currentX, currentY, currentSide);
                 if(obj){
                     obj.GetComponent<HealthController>().takeDamage(dmg);

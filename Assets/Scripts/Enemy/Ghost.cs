@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cursedArmor : MonoBehaviour, Enemy{
+public class Ghost : MonoBehaviour, Enemy{
     int idleCounter = 0;
     int X, Y, PlayerX, PlayerY;
     public GameObject handPrefab;
@@ -81,7 +81,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                         obj.GetComponent<ProjectileItem>().throwItem(X,
                         3, true, 10, 1.1f, -1, true);
                     }
-                    else{
+                    else{asd
                         obj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                         obj.GetComponent<ProjectileItem>().throwItem(X,
                         Y - 1, false, 10, 1.1f, -1, true);
@@ -154,6 +154,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                 cnt ++;
                 if(cnt == rnd) enemyMovement.MoveTo(i, j);
             }
+
     }
 }
 /*
