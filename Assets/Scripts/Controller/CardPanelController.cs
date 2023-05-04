@@ -29,10 +29,18 @@ public class CardPanelController : MonoBehaviour{
         if(cards[index].getCost() > currentMana) return false;
         cards[index].Cast(ref currentMana);
         deckController.discard(cards[index]);
-        Debug.Log("discard");
+        // Debug.Log("discard");
         cards[index] = deckController.draw();
         controllers[index].set(cards[index].getSprite(), cards[index].getCost());
         return true;
+    }
+
+    public void reDraw(){
+        for(int i = 0; i < 4; i ++){
+            deckController.discard(cards[i]);
+            cards[i] = deckController.draw();
+            controllers[i].set(cards[i].getSprite(), cards[i].getCost());
+        }
     }
 
     void Update(){

@@ -72,6 +72,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                                     }
                                 cnt ++;
                             }
+                        idleCounter = 3;
                         cooldown[0] = 15;
                     }
                 }
@@ -86,6 +87,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                         obj.GetComponent<ProjectileItem>().throwItem(X,
                         Y - 1, false, 10, 1.1f, -1, true);
                     }
+                    idleCounter = 2;
                     cooldown[1] = 5;
                 }
                 else if(rnd == 3 && cooldown[2] == 0){
@@ -113,7 +115,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                                     }
                                 cnt ++;
                             }
-                            
+                        idleCounter = 3;
                         cooldown[2] = 10;
                     }
                 }
@@ -130,6 +132,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                         playerMovement.setX(PlayerX);
                         playerMovement.setY(PlayerY);
                     }
+                    idleCounter = 1;
                     cooldown[3] = 5;
                 }
                 else randomMove(X, Y);
