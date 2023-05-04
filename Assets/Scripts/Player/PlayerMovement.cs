@@ -119,6 +119,13 @@ public class PlayerMovement : MonoBehaviour{
             #endif
         }
     }
+    public void MoveTo(int x, int y){
+        if(floorController.isAccessable(x, y, false)){
+            X = x;
+            Y = y;
+            positionController.set(player, floorController.get(X, Y, true));
+        }
+    }
     public int getX(){
         return X;
     }
