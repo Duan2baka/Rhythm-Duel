@@ -22,6 +22,7 @@ public class FloorStatus : MonoBehaviour{
     }
     public void changeBlocked(int val){
         blocked += val;
+        if(blocked < 0) blocked = 0;
     }
     public bool getStatus(){
         return status;

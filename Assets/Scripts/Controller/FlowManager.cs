@@ -30,6 +30,7 @@ public class FlowManager : MonoBehaviour{
     }
     void LateUpdate(){
         if(exhausted){
+            // Debug.Log("T++");
             T ++;
             enemy.takeAction();
             eventManager();

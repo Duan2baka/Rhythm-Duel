@@ -17,7 +17,9 @@ public class Lich : MonoBehaviour, Enemy{
     int[] cooldown, randomlist;
     int[] fx, fy;
     private int rnd, cnt, startHP = -1;
+    bool flag;
     void Start(){
+        flag = false;
         startHP = -1;
         is_invisible = false;
         fx = new int[5]{0, 1, 0, -1, 0};
@@ -58,72 +60,28 @@ public class Lich : MonoBehaviour, Enemy{
 
             //**************************
             rnd = Random.Range(1, 10 + 1);
-            /*if(rnd <= 5){
+            if(rnd <= 5){
                 rnd = Random.Range(1, 4 + 1);
                 // Debug.Log(rnd);  
                 if(rnd == 1 && cooldown[0] == 0){ /// 1
-                    rnd = Random.Range(1, 2 + 1);
-                    obj = Instantiate(magicCirclePrefab, transform.position - new Vector3(
-                    0f, - gameObject.GetComponent<BoxCollider2D>().size.y / 2f, 0f)
-                    , Quaternion.identity);
-                    obj.GetComponent<MagicCircleController>().init(gameObject);
-                    
-                    if(rnd == 1){
-                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
-                        obj.GetComponent<ProjectileItem>().throwItem(1,
-                        3, false, 10, 1.1f, -1, "Player");
-                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
-                        obj.GetComponent<ProjectileItem>().throwItem(3,
-                        3, false, 10, 1.1f, -1, "Player");
-                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
-                        obj.GetComponent<ProjectileItem>().throwItem(2,
-                        1, false, 10, 1.1f, -1, "Player");
-                    }
-                    else{
-                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
-                        obj.GetComponent<ProjectileItem>().throwItem(1,
-                        1, false, 10, 1.1f, -1, "Player");
-                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
-                        obj.GetComponent<ProjectileItem>().throwItem(3,
-                        1, false, 10, 1.1f, -1, "Player");
-                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
-                        obj.GetComponent<ProjectileItem>().throwItem(2,
-                        3, false, 10, 1.1f, -1, "Player");
-                    }
-                    cooldown[2] = 10;
-                    idleCounter = 5;
+                    obj = Instantiate(knightPrefab, transform.position, Quaternion.identity);
+                    rnd = Random.Range(1, 3 + 1);
+                    obj.GetComponent<KnightController>().init(-1, "Player", rnd, 3, false, 10);
+                    idleCounter = 3;
+                    cooldown[0] = 15;
                 }
                 else if(rnd == 2 && cooldown[1] == 0){ /// 2
-                    cardPanelController.shuffleHand();
-                    obj = Instantiate(recyclePrefab, player.transform.position - new Vector3(
-                    0f, - player.GetComponent<BoxCollider2D>().size.y, 0f), Quaternion.identity);
-                    obj.GetComponent<RecycleController>().init(player);
-                    Destroy(obj, 0.5f);
-                    idleCounter = 2;
-                    cooldown[1] = 10;
                 }
                 else if(rnd == 3 && cooldown[2] == 0){ /// 3
-                    obj = Instantiate(lilGhostPrefab, transform.position, Quaternion.identity);
-                    obj.GetComponent<ProjectileItem>().throwItem(X,
-                    1, true, 10, 1.1f, 1, "Player");
-                    cooldown[2] = 6;
-                    idleCounter = 3;
                 }
                 else if(rnd == 4 && cooldown[3] == 0){ /// 4
-                    is_invisible = true;
-                    gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.1f);
-                    startHP = gameObject.GetComponent<HealthController>().getHP();
-                    cooldown[3] = 20;
-                    idleCounter = 1;
                 }
                 else randomMoveAdjacent(X, Y);
             }
             else{
-                randomMove(X, Y);
+                randomMoveAdjacent(X, Y);
                 idleCounter = 1;
-            }*/
-            obj = Instantiate(knightPrefab, transform.position, Quaternion.identity);
-            obj.GetComponent<KnightController>().init(-1, "Player", 3, 3, false, 10);
+            }
         }
     }
     private void randomMove(int x, int y){
@@ -159,7 +117,7 @@ public class Lich : MonoBehaviour, Enemy{
 }
 /*
 skill id                 skill effect                           skill cooldown        idle       
-    1     spawn 3 snakes                                             15                5 
+    1                  spawn a knight                                15                3 
     2            reshuffle player's chips                            10                10          
     3  spawn a ghost from left to right, deal damage to player       6                 3
     4 get invisible and heal when invisible, ends when take damage   5                 1
