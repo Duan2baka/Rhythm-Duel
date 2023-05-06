@@ -24,7 +24,6 @@ public class CardPanelController : MonoBehaviour{
             }
         }
     }
-
     public bool playCard(int index, ref int currentMana){
         if(cards[index].getCost() > currentMana) return false;
         cards[index].Cast(ref currentMana);
@@ -34,7 +33,6 @@ public class CardPanelController : MonoBehaviour{
         controllers[index].set(cards[index].getSprite(), cards[index].getCost());
         return true;
     }
-
     public void reDraw(){
         for(int i = 0; i < 4; i ++){
             deckController.discard(cards[i]);
@@ -42,11 +40,14 @@ public class CardPanelController : MonoBehaviour{
             controllers[i].set(cards[i].getSprite(), cards[i].getCost());
         }
     }
-
+    public void shuffleHand(){
+        cards.Shuffle();
+        for(int i = 0; i < 4; i ++)
+            controllers[i].set(cards[i].getSprite(), cards[i].getCost());
+    }
     void Update(){
         if(!initialized) init();
     }
-
     void init(){
         initialized = true;
         for(int i = 0; i < 4; i ++){

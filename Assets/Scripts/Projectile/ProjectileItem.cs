@@ -46,6 +46,7 @@ public class ProjectileItem : MonoBehaviour{
             }
             tmp = floorController.get(currentX, currentY, currentSide);
             if(!tmp.GetComponent<FloorStatus>().getStatus()) break;
+            transform.position = floorController.getPosition(currentX, currentY, currentSide);
             if(currentSide == damageArea){
                 obj = floorController.FindObjectOn(currentX, currentY, currentSide);
                 if(obj){
@@ -53,8 +54,7 @@ public class ProjectileItem : MonoBehaviour{
                     break;
                 }
             }
-            transform.position = floorController.getPosition(currentX, currentY, currentSide);
         }
-        Destroy(gameObject);
+        Destroy(gameObject, time);
     }
 }
