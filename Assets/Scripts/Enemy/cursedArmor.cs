@@ -169,13 +169,6 @@ public class cursedArmor : MonoBehaviour, Enemy{
             if(floorController.isAccessable(x + fx[i], y + fy[i], false)) cnt ++;
         int rnd = Random.Range(1, cnt + 1);
         cnt = 0;
-        for(int i = 1; i <= 3; i ++)
-            for(int j = 1; j <= 3; j ++){
-                if(!floorController.isAccessable(i, j, false)) continue;
-                if(i == x && j == y) continue;
-                cnt ++;
-                if(cnt == rnd) enemyMovement.MoveTo(i, j);
-            }
         
         for(int i = 0; i < 4; i ++){
             if(!floorController.isAccessable(x + fx[i], y + fy[i], false)) continue;

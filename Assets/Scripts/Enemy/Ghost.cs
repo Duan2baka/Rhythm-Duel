@@ -64,6 +64,7 @@ public class Ghost : MonoBehaviour, Enemy{
                     obj.GetComponent<ProjectileItem>().throwItem(X,
                     1, true, 10, 1.1f, 1, true);
                     cooldown[2] = 6;
+                    idleCounter = 1;
                 }
                 else if(rnd == 4 && cooldown[3] == 0){ /// 4
                 
@@ -98,14 +99,6 @@ public class Ghost : MonoBehaviour, Enemy{
             if(floorController.isAccessable(x + fx[i], y + fy[i], false)) cnt ++;
         int rnd = Random.Range(1, cnt + 1);
         cnt = 0;
-        for(int i = 1; i <= 3; i ++)
-            for(int j = 1; j <= 3; j ++){
-                if(!floorController.isAccessable(i, j, false)) continue;
-                if(i == x && j == y) continue;
-                cnt ++;
-                if(cnt == rnd) enemyMovement.MoveTo(i, j);
-            }
-        
         for(int i = 0; i < 4; i ++){
             if(!floorController.isAccessable(x + fx[i], y + fy[i], false)) continue;
             cnt ++;
@@ -115,8 +108,8 @@ public class Ghost : MonoBehaviour, Enemy{
 }
 /*
 skill id                 skill effect                      skill cooldown       priority          additional       
-    1     randomly break three floors in player's side             15                           idle for 3 turns
+    1     spawn 3 snakes                                         15                           idle for 3 turns
     2            reshuffle player's chips                          10                          
-    3  spawn a ghost from left to right, deal damage to player     6                          idle for 2 turns
+    3  spawn a ghost from left to right, deal damage to player     6                          idle for 1 turns
     4              push player to the right floor                  5               
 */
