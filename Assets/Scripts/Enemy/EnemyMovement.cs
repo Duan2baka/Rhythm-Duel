@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour{
+public class EnemyMovement : MonoBehaviour, Movement{
     public int InitialX = 2;
     public int InitialY = 2;
     private int X;
@@ -43,5 +43,8 @@ public class EnemyMovement : MonoBehaviour{
     }
     public int getY(){
         return Y;
+    }
+    public bool getSide(){
+        return false;
     }
 }

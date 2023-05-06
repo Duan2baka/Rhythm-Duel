@@ -7,7 +7,7 @@ public class attackCard : MonoBehaviour, Card{
     public Sprite img;
     public void Cast(ref int currentMana){
         currentMana -= cost;
-        GameObject.Find("Enemy").GetComponent<HealthController>().takeDamage(10);
+        GameObject.FindGameObjectWithTag("MainEnemy").transform.parent.gameObject.GetComponent<HealthController>().takeDamage(10);
         return;
     }
     public int getCost(){

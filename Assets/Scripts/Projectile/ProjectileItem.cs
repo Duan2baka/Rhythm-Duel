@@ -7,6 +7,8 @@ public class ProjectileItem : MonoBehaviour{
     private GameObject tmp, obj;
     private FloorController floorController;
     private int dmg;
+    public int currentX, currentY;
+    public bool currentSide;
     public void throwItem(int startX, int startY, bool startSide,int Dmg, float timeScale, int direction, bool damageArea){
         dmg = Dmg;
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
@@ -17,7 +19,10 @@ public class ProjectileItem : MonoBehaviour{
         moveTime = GameObject.FindGameObjectWithTag("GameController").GetComponent<RhythmController>().timeGap * timeScale;
         StartCoroutine(ThrowItemCoroutine(startX, startY, startSide, moveTime, direction, damageArea));
     }
-    IEnumerator ThrowItemCoroutine(int currentX, int currentY, bool currentSide, float time, int direction, bool damageArea){
+    IEnumerator ThrowItemCoroutine(int startX, int startY, bool startSide, float time, int direction, bool damageArea){
+        currentX = startX;
+        currentY = startY;
+        currentSide = startSide;
         while(true){
             float t = 0;
             while (t < time){
@@ -55,6 +60,6 @@ public class ProjectileItem : MonoBehaviour{
                 }
             }
         }
-        Destroy(gameObject, time);
+        Destroy(gameObject);
     }
 }

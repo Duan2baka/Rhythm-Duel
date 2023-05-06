@@ -6,6 +6,7 @@ public class FloorController : MonoBehaviour{
     private GameObject[,,] floor;
     private GameObject player;
     private GameObject enemy;
+    private GameObject[] enemyList;
     void Start(){
         enemy = GameObject.FindGameObjectWithTag("MainEnemy").transform.parent.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -44,16 +45,14 @@ public class FloorController : MonoBehaviour{
         return floor[(isPlayer ? 1 : 0), X, Y].transform.Find("Position").position;
     }
     public GameObject FindObjectOn(int X, int Y, bool isPlayer){
-        if(isPlayer){
-            if(player.GetComponent<PlayerMovement>().getX() == X && player.GetComponent<PlayerMovement>().getY() == Y) return player;
-            //return (player.GetComponent<PlayerMovement>().getX() == X && player.GetComponent<PlayerMovement>().getY() == Y)
-            //? player : null;
-        }
-        else{
-            if(enemy.GetComponent<EnemyMovement>().getX() == X && enemy.GetComponent<EnemyMovement>().getY() == Y) return enemy;
-
-            //return (enemy.GetComponent<EnemyMovement>().getX() == X && player.GetComponent<EnemyMovement>().getY() == Y)
-            //? enemy : null;
+        if(player.GetComponent<Movement>().getX() == X &&player.GetComponent<Movement>().getY() == Y
+        && player.GetComponent<Movement>().getSide() == isPlayer) return player;
+        if(enemy.GetComponent<Movement>().getX() == X && enemy.GetComponent<Movement>().getY() == Y
+        && enemy.GetComponent<Movement>().getSide() == isPlayer) return enemy;
+        enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject obj in enemyList){
+            if(obj.GetComponent<Movement>().getX() == X && obj.GetComponent<Movement>().getY() == Y
+            && obj.GetComponent<Movement>().getSide() == isPlayer) return obj;
         }
 
 

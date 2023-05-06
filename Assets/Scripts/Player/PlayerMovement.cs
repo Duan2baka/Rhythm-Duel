@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour{
+public class PlayerMovement : MonoBehaviour, Movement{
     public int InitialX = 2;
     public int InitialY = 2;
     private int X;
@@ -131,6 +131,9 @@ public class PlayerMovement : MonoBehaviour{
     }
     public int getY(){
         return Y;
+    }
+    public bool getSide(){
+        return true;
     }
     public void setX(int x){
         X = x;

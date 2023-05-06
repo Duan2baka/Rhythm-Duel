@@ -10,7 +10,7 @@ public class Recovery10Card : MonoBehaviour, Card{
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthController>();
     }
     public void Cast(ref int currentMana){
-        playerHealth.health(10);
+        playerHealth.heal(10);
         currentMana -= cost;
         return;
     }

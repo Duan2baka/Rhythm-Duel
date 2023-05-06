@@ -6,7 +6,7 @@ public class Ghost : MonoBehaviour, Enemy{
     int idleCounter = 0;
     int X, Y, PlayerX, PlayerY;
     public GameObject recyclePrefab;
-    public GameObject throwablePrefab, shovelPrefab, lilGhostPrefab;
+    public GameObject magicCirclePrefab, snakePrefab, lilGhostPrefab;
     private GameObject player;
     PlayerMovement playerMovement;
     EnemyMovement enemyMovement;
@@ -50,6 +50,37 @@ public class Ghost : MonoBehaviour, Enemy{
                 rnd = Random.Range(1, 4 + 1);
                 // Debug.Log(rnd);  
                 if(rnd == 1 && cooldown[0] == 0){ /// 1
+                    
+            rnd = Random.Range(1, 2 + 1);
+                    obj = Instantiate(magicCirclePrefab, transform.position - new Vector3(
+                    0f, - gameObject.GetComponent<BoxCollider2D>().size.y / 2f, 0f)
+                    , Quaternion.identity);
+                    obj.GetComponent<MagicCircleController>().init(gameObject);
+                    
+                    if(rnd == 1){
+                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
+                        obj.GetComponent<ProjectileItem>().throwItem(1,
+                        3, false, 10, 1.1f, -1, true);
+                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
+                        obj.GetComponent<ProjectileItem>().throwItem(3,
+                        3, false, 10, 1.1f, -1, true);
+                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
+                        obj.GetComponent<ProjectileItem>().throwItem(2,
+                        1, false, 10, 1.1f, -1, true);
+                    }
+                    else{
+                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
+                        obj.GetComponent<ProjectileItem>().throwItem(1,
+                        1, false, 10, 1.1f, -1, true);
+                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
+                        obj.GetComponent<ProjectileItem>().throwItem(3,
+                        1, false, 10, 1.1f, -1, true);
+                        obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
+                        obj.GetComponent<ProjectileItem>().throwItem(2,
+                        3, false, 10, 1.1f, -1, true);
+                    }
+                    cooldown[2] = 10;
+                    idleCounter = 3;
                 }
                 else if(rnd == 2 && cooldown[1] == 0){ /// 2
                     cardPanelController.shuffleHand();
@@ -90,7 +121,6 @@ public class Ghost : MonoBehaviour, Enemy{
                 cnt ++;
                 if(cnt == rnd) enemyMovement.MoveTo(i, j);
             }
-
     }
     private void randomMoveAdjacent(int x, int y){
         // Debug.Log("move");

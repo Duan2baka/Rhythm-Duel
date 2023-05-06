@@ -13,7 +13,7 @@ public class XAttackCard : MonoBehaviour, Card{
     private GameObject tmp;
     public void init(){
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        enemyMovement = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyMovement>();
+        enemyMovement = GameObject.FindGameObjectWithTag("MainEnemy").transform.parent.gameObject.GetComponent<EnemyMovement>();
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
     }
     private void tryCast(int x, int y){

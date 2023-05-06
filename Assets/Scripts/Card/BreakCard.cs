@@ -12,7 +12,7 @@ public class BreakCard : MonoBehaviour, Card{
     
     public void init(){
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        enemyMovement = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyMovement>();
+        enemyMovement = GameObject.FindGameObjectWithTag("MainEnemy").transform.parent.gameObject.GetComponent<EnemyMovement>();
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
     }
     public void Cast(ref int currentMana){

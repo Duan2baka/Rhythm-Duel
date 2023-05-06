@@ -17,7 +17,7 @@ public class BombCard : MonoBehaviour, Card{
     public void init(){
         player = GameObject.FindGameObjectWithTag("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
-        enemyMovement = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyMovement>();
+        enemyMovement = GameObject.FindGameObjectWithTag("MainEnemy").transform.parent.gameObject.GetComponent<EnemyMovement>();
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         mouseController = GameObject.FindGameObjectWithTag("GameController").GetComponent<MouseController>();
     }

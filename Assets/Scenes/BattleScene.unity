@@ -4864,8 +4864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recyclePrefab: {fileID: 4517418094705693399, guid: ddac1605af05def41ba2a3aa51dc147a, type: 3}
-  throwablePrefab: {fileID: 0}
-  shovelPrefab: {fileID: 0}
+  magicCirclePrefab: {fileID: 2541556676517369270, guid: 085ed5094adaac44ab1a3db06a3377fc, type: 3}
+  snakePrefab: {fileID: 8465489272726497703, guid: 8f649da4da6eca5479f46590291805d8, type: 3}
   lilGhostPrefab: {fileID: 7503603438927217209, guid: aaa0b0ea47a7e2f418e6acec2b264298, type: 3}
 --- !u!114 &2076715575
 MonoBehaviour:
@@ -4903,7 +4903,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 2.112, y: 2.112}
   m_EdgeRadius: 0
 --- !u!114 &2076715577
 MonoBehaviour:
