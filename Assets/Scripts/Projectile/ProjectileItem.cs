@@ -13,7 +13,7 @@ public class ProjectileItem : MonoBehaviour{
         dmg = Dmg;
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         tmp = floorController.get(startX, startY, startSide);
-        if(!tmp.GetComponent<FloorStatus>().getStatus()) return;
+        if(!tmp.GetComponent<FloorStatus>().getStatus() || tmp.GetComponent<FloorStatus>().getBlocked()) return;
         transform.position = floorController.getPosition(startX, startY, startSide);
         //transform.localScale = new Vector3(5f, 5f, 5f);
         moveTime = GameObject.FindGameObjectWithTag("GameController").GetComponent<RhythmController>().timeGap * timeScale;
@@ -50,7 +50,7 @@ public class ProjectileItem : MonoBehaviour{
                 }
             }
             tmp = floorController.get(currentX, currentY, currentSide);
-            if(!tmp.GetComponent<FloorStatus>().getStatus()) break;
+            if(!tmp.GetComponent<FloorStatus>().getStatus() || !tmp.GetComponent<FloorStatus>().getBlocked()) break;
             transform.position = floorController.getPosition(currentX, currentY, currentSide);
             obj = floorController.FindObjectOn_WithTag(currentX, currentY, currentSide, tag);
             if(obj){

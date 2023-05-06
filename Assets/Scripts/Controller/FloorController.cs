@@ -34,6 +34,7 @@ public class FloorController : MonoBehaviour{
     public bool isAccessable(int X, int Y, bool isPlayer){
         /*if(isPlayer)*/ if(X < 1 || X > 3 || Y < 1 || Y > 3) return false;
         if(!get(X, Y, isPlayer).GetComponent<FloorStatus>().getStatus()) return false;
+        if(get(X, Y, isPlayer).GetComponent<FloorStatus>().getBlocked()) return false;
         return true;
     }
     

@@ -12,14 +12,22 @@ public class FloorStatus : MonoBehaviour{
     private int positionX, positionY;
     private GameObject tmpObject;
     private bool side;
+    private int blocked;
     void Start(){
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         fixProcess = 0;
         health = maxHealth;
         status = true;
+        blocked = 0;
+    }
+    public void changeBlocked(int val){
+        blocked += val;
     }
     public bool getStatus(){
         return status;
+    }
+    public bool getBlocked(){
+        return (blocked != 0);
     }
     public int getHealth(){
         return health;

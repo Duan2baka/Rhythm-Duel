@@ -1118,6 +1118,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44d54e0a159f36148ba695aa46baa39d, type: 3}
+--- !u!1 &562618080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 562618081}
+  m_Layer: 0
+  m_Name: mainEnemy
+  m_TagString: MainEnemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &562618081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562618080}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 643691331}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &576727370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,10 +1327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4149e817ca81d16488f075ce11a6d695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recyclePrefab: {fileID: 0}
-  magicCirclePrefab: {fileID: 0}
-  snakePrefab: {fileID: 0}
-  lilGhostPrefab: {fileID: 0}
+  knightPrefab: {fileID: 5552173422719195480, guid: 1556446ab7591b04981ef2d57fa2bb38, type: 3}
 --- !u!114 &643691326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,7 +1455,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 562618081}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

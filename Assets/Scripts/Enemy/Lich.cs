@@ -5,8 +5,7 @@ using UnityEngine;
 public class Lich : MonoBehaviour, Enemy{
     int idleCounter = 0;
     int X, Y, PlayerX, PlayerY;
-    public GameObject recyclePrefab;
-    public GameObject magicCirclePrefab, snakePrefab, lilGhostPrefab;
+    public GameObject knightPrefab;
     private GameObject player;
     private bool is_invisible;
     PlayerMovement playerMovement;
@@ -59,7 +58,7 @@ public class Lich : MonoBehaviour, Enemy{
 
             //**************************
             rnd = Random.Range(1, 10 + 1);
-            if(rnd <= 5){
+            /*if(rnd <= 5){
                 rnd = Random.Range(1, 4 + 1);
                 // Debug.Log(rnd);  
                 if(rnd == 1 && cooldown[0] == 0){ /// 1
@@ -122,7 +121,9 @@ public class Lich : MonoBehaviour, Enemy{
             else{
                 randomMove(X, Y);
                 idleCounter = 1;
-            }
+            }*/
+            obj = Instantiate(knightPrefab, transform.position, Quaternion.identity);
+            obj.GetComponent<KnightController>().init(-1, "Player", 3, 3, false, 10);
         }
     }
     private void randomMove(int x, int y){
