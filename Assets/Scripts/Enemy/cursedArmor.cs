@@ -83,12 +83,12 @@ public class cursedArmor : MonoBehaviour, Enemy{
                     if(Y == 1){
                         obj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                         obj.GetComponent<ProjectileItem>().throwItem(X,
-                        3, true, 10, 1.1f, -1, true);
+                        3, true, 10, 1.1f, -1, "Player");
                     }
                     else{
                         obj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
                         obj.GetComponent<ProjectileItem>().throwItem(X,
-                        Y - 1, false, 10, 1.1f, -1, true);
+                        Y - 1, false, 10, 1.1f, -1, "Player");
                     }
                     idleCounter = 2;
                     cooldown[1] = 5;
@@ -113,7 +113,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                                         obj = Instantiate(throwablePrefab, transform.position, Quaternion.identity);
                                         tmp = floorController.get(i, j, true);
                                         obj.GetComponent<ThrowItem>().throwItem(transform.position,
-                                        tmp.transform.Find("Position").position, tmp, 10, 1.1f);
+                                        tmp.transform.Find("Position").position, tmp, 10, 1.1f, "Player");
                                         break;
                                     }
                                 cnt ++;

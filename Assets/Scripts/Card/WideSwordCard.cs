@@ -24,7 +24,7 @@ public class WideSwordCard : MonoBehaviour, Card{
             float scale = floorController.get(x, y, playerSide).GetComponent<Renderer>().bounds.size.x / size.x;
             obj.transform.localScale = new Vector3(scale, scale, scale);
 
-            tmp = floorController.FindObjectOn(x, y, playerSide);
+            tmp = floorController.FindObjectOn_WithTag(x, y, playerSide, "Enemy");
             if(tmp != null)
                 tmp.GetComponent<HealthController>().takeDamage(dmg);
         }

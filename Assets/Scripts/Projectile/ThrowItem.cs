@@ -9,15 +9,15 @@ public class ThrowItem : MonoBehaviour{
     private GameObject tmp, obj;
     private int dmg;
     
-    public void throwItem(Vector3 startPoint, Vector3 endPoint, GameObject targetFloor,int Dmg, float timeScale){
+    public void throwItem(Vector3 startPoint, Vector3 endPoint, GameObject targetFloor,int Dmg, float timeScale, string tag){
         dmg = Dmg;
         obj = Instantiate(aimPrefab, endPoint, Quaternion.identity);
         //transform.localScale = new Vector3(5f, 5f, 5f);
         throwTime = GameObject.FindGameObjectWithTag("GameController").GetComponent<RhythmController>().timeGap * timeScale;
         Destroy(obj, throwTime);
-        StartCoroutine(ThrowItemCoroutine(startPoint, endPoint, throwTime, targetFloor));
+        StartCoroutine(ThrowItemCoroutine(startPoint, endPoint, throwTime, targetFloor, tag));
     }
-    IEnumerator ThrowItemCoroutine(Vector3 startPos, Vector3 endPos, float time, GameObject targetFloor){
+    IEnumerator ThrowItemCoroutine(Vector3 startPos, Vector3 endPos, float time, GameObject targetFloor, string tag){
         float t = 0;
         float g = 10f;
         float vy = (endPos.y - startPos.y + 0.5f * g * time * time) / time;
@@ -39,7 +39,7 @@ public class ThrowItem : MonoBehaviour{
             yield return null;
         }
         SpawnEffect(transform.position);
-        tmp = targetFloor.GetComponent<FloorStatus>().GetObject();
+        tmp = targetFloor.GetComponent<FloorStatus>().GetObject_WithTag(tag);
         if(tmp != null){
             tmp.GetComponent<HealthController>().takeDamage(dmg);
         }

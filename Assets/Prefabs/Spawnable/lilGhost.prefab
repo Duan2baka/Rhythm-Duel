@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 7503603438927217223}
   - component: {fileID: 7503603438927217222}
   - component: {fileID: 1225279573559446153}
+  - component: {fileID: -6779909630809191420}
+  - component: {fileID: -6325187717677417102}
+  - component: {fileID: 7746489268265797813}
   m_Layer: 0
   m_Name: lilGhost
   m_TagString: Enemy
@@ -98,3 +101,40 @@ MonoBehaviour:
   currentX: 0
   currentY: 0
   currentSide: 0
+--- !u!114 &-6779909630809191420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7503603438927217209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f059dbccf578fe84984784ab76cd19f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6325187717677417102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7503603438927217209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d828a7a5dfa01547870658b0aed8645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7746489268265797813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7503603438927217209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7ad57a32c7070449e7253969d4362b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class XAttackCard : MonoBehaviour, Card{
+public class BubbleShot : MonoBehaviour, Card{
     public GameObject effectPrefab;
     public int cost = 3;
     private int dmg = 10;
@@ -77,15 +77,7 @@ public class XAttackCard : MonoBehaviour, Card{
             }
         }
         tryCast(targetX, targetY, targetSide);
-        int fx = 1, fy = 1;
-        for(int i = 1; i <= 2; i ++){
-            fx *= -1;
-            for(int j = 1; j <= 2; j++){
-                fy *= -1;
-                tryCast(targetX + fx, targetY + fy, targetSide);
-            }
-        }
-        
+        tryCast(targetX, targetY + 1, targetSide);
         currentMana -= cost;
         return;
     }
@@ -100,9 +92,9 @@ public class XAttackCard : MonoBehaviour, Card{
         Destroy(effect, 0.3f);
     }
     public string getChipName(){
-        return "Cross gun";
+        return "Bubble shot";
     }
     public string getDescription(){
-        return "The attack spreads in four diagonal squares, forming a cross";
+        return "Shoot an enemy and the grid behind him.";
     }
 }

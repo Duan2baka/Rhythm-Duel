@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 2312162542071485728}
   - component: {fileID: 6473294861344676562}
   - component: {fileID: 3735392346144952131}
+  - component: {fileID: 7109824075878802218}
+  - component: {fileID: 8165849759292696817}
+  - component: {fileID: -8319712723854193467}
   m_Layer: 0
   m_Name: snake
   m_TagString: Enemy
@@ -120,3 +123,40 @@ MonoBehaviour:
   currentX: 0
   currentY: 0
   currentSide: 0
+--- !u!114 &7109824075878802218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8465489272726497703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f059dbccf578fe84984784ab76cd19f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8165849759292696817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8465489272726497703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d828a7a5dfa01547870658b0aed8645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8319712723854193467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8465489272726497703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7ad57a32c7070449e7253969d4362b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 1

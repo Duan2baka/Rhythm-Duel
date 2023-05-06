@@ -9,7 +9,7 @@ public class ProjectileItem : MonoBehaviour{
     private int dmg;
     public int currentX, currentY;
     public bool currentSide;
-    public void throwItem(int startX, int startY, bool startSide,int Dmg, float timeScale, int direction, bool damageArea){
+    public void throwItem(int startX, int startY, bool startSide,int Dmg, float timeScale, int direction, string tag){
         dmg = Dmg;
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         tmp = floorController.get(startX, startY, startSide);
@@ -17,9 +17,9 @@ public class ProjectileItem : MonoBehaviour{
         transform.position = floorController.getPosition(startX, startY, startSide);
         //transform.localScale = new Vector3(5f, 5f, 5f);
         moveTime = GameObject.FindGameObjectWithTag("GameController").GetComponent<RhythmController>().timeGap * timeScale;
-        StartCoroutine(ThrowItemCoroutine(startX, startY, startSide, moveTime, direction, damageArea));
+        StartCoroutine(ThrowItemCoroutine(startX, startY, startSide, moveTime, direction, tag));
     }
-    IEnumerator ThrowItemCoroutine(int startX, int startY, bool startSide, float time, int direction, bool damageArea){
+    IEnumerator ThrowItemCoroutine(int startX, int startY, bool startSide, float time, int direction, string tag){
         currentX = startX;
         currentY = startY;
         currentSide = startSide;
@@ -52,12 +52,10 @@ public class ProjectileItem : MonoBehaviour{
             tmp = floorController.get(currentX, currentY, currentSide);
             if(!tmp.GetComponent<FloorStatus>().getStatus()) break;
             transform.position = floorController.getPosition(currentX, currentY, currentSide);
-            if(currentSide == damageArea){
-                obj = floorController.FindObjectOn(currentX, currentY, currentSide);
-                if(obj){
-                    obj.GetComponent<HealthController>().takeDamage(dmg);
-                    break;
-                }
+            obj = floorController.FindObjectOn_WithTag(currentX, currentY, currentSide, tag);
+            if(obj){
+                obj.GetComponent<HealthController>().takeDamage(dmg);
+                break;
             }
         }
         Destroy(gameObject);

@@ -245,7 +245,7 @@ MonoBehaviour:
   - {fileID: 7426648409187952003, guid: f8b6340560704cb4fa7b2a37497c8118, type: 3}
   - {fileID: 7779558414140628225, guid: af45676d19af9284a9f89261c35a0a37, type: 3}
   - {fileID: 5991751731693576832, guid: 0c762f4b3d91c6047a61cf5052f4e677, type: 3}
-  - {fileID: 6477950201002979783, guid: 9e8b5087cdd3e6849a59711097aafbfe, type: 3}
+  - {fileID: 1958836752242102980, guid: d53df5861a31e0e45a406cd4332c9be3, type: 3}
   - {fileID: 6477950201002979783, guid: 9e8b5087cdd3e6849a59711097aafbfe, type: 3}
   - {fileID: 1874088616829557413, guid: 1189bd5e66dece34fbd3e495003651fc, type: 3}
   - {fileID: 6289525166720660209, guid: 70b7a259f0af83a4ab168872db8b6e31, type: 3}
@@ -4931,8 +4931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7ad57a32c7070449e7253969d4362b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 35404063}
   maxHP: 100
+  HP: 0
 --- !u!212 &2076715579
 SpriteRenderer:
   m_ObjectHideFlags: 0

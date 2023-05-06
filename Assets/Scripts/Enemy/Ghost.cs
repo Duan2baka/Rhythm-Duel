@@ -25,7 +25,7 @@ public class Ghost : MonoBehaviour, Enemy{
         positionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<PositionController>();
         cardPanelController = GameObject.FindGameObjectWithTag("CardPanel").GetComponent<CardPanelController>();
         idleCounter = 0;
-        cooldown = new int[5]{0, 0, 0, 0, 0};
+        cooldown = new int[5]{10, 0, 0, 0, 0};
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         enemyMovement = gameObject.GetComponent<EnemyMovement>();
     }
@@ -50,8 +50,7 @@ public class Ghost : MonoBehaviour, Enemy{
                 rnd = Random.Range(1, 4 + 1);
                 // Debug.Log(rnd);  
                 if(rnd == 1 && cooldown[0] == 0){ /// 1
-                    
-            rnd = Random.Range(1, 2 + 1);
+                    rnd = Random.Range(1, 2 + 1);
                     obj = Instantiate(magicCirclePrefab, transform.position - new Vector3(
                     0f, - gameObject.GetComponent<BoxCollider2D>().size.y / 2f, 0f)
                     , Quaternion.identity);
@@ -60,24 +59,24 @@ public class Ghost : MonoBehaviour, Enemy{
                     if(rnd == 1){
                         obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
                         obj.GetComponent<ProjectileItem>().throwItem(1,
-                        3, false, 10, 1.1f, -1, true);
+                        3, false, 10, 1.1f, -1, "Player");
                         obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
                         obj.GetComponent<ProjectileItem>().throwItem(3,
-                        3, false, 10, 1.1f, -1, true);
+                        3, false, 10, 1.1f, -1, "Player");
                         obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
                         obj.GetComponent<ProjectileItem>().throwItem(2,
-                        1, false, 10, 1.1f, -1, true);
+                        1, false, 10, 1.1f, -1, "Player");
                     }
                     else{
                         obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
                         obj.GetComponent<ProjectileItem>().throwItem(1,
-                        1, false, 10, 1.1f, -1, true);
+                        1, false, 10, 1.1f, -1, "Player");
                         obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
                         obj.GetComponent<ProjectileItem>().throwItem(3,
-                        1, false, 10, 1.1f, -1, true);
+                        1, false, 10, 1.1f, -1, "Player");
                         obj = Instantiate(snakePrefab, transform.position, Quaternion.identity);
                         obj.GetComponent<ProjectileItem>().throwItem(2,
-                        3, false, 10, 1.1f, -1, true);
+                        3, false, 10, 1.1f, -1, "Player");
                     }
                     cooldown[2] = 10;
                     idleCounter = 3;
@@ -88,21 +87,25 @@ public class Ghost : MonoBehaviour, Enemy{
                     0f, - player.GetComponent<BoxCollider2D>().size.y, 0f), Quaternion.identity);
                     obj.GetComponent<RecycleController>().init(player);
                     Destroy(obj, 0.3f);
+                    idleCounter = 2;
                     cooldown[1] = 10;
                 }
                 else if(rnd == 3 && cooldown[2] == 0){ /// 3
                     obj = Instantiate(lilGhostPrefab, transform.position, Quaternion.identity);
                     obj.GetComponent<ProjectileItem>().throwItem(X,
-                    1, true, 10, 1.1f, 1, true);
+                    1, true, 10, 1.1f, 1, "Player");
                     cooldown[2] = 6;
-                    idleCounter = 1;
+                    idleCounter = 3;
                 }
                 else if(rnd == 4 && cooldown[3] == 0){ /// 4
                 
                 }
                 else randomMoveAdjacent(X, Y);
             }
-            else randomMove(X, Y);
+            else{
+                randomMove(X, Y);
+                idleCounter = 1;
+            }
         }
     }
     private void randomMove(int x, int y){

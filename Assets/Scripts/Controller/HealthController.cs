@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthController : MonoBehaviour{
     public int maxHP = 100;
-    private int HP;
+    public int HP;
     void Start(){
         HP = maxHP;
     }

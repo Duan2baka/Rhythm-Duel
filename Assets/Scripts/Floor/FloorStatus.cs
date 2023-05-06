@@ -32,6 +32,9 @@ public class FloorStatus : MonoBehaviour{
     public GameObject GetObject(){
         return floorController.FindObjectOn(positionX, positionY, side);
     }
+    public GameObject GetObject_WithTag(string tag){
+        return floorController.FindObjectOn_WithTag(positionX, positionY, side, tag);
+    }
     public void refresh(){
         gameObject.GetComponent<SpriteRenderer>().enabled = status;
         fix(1);
