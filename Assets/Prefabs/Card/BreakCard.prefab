@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e424242545342c4993de84d1739ca1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 5
+  cost: 3
   img: {fileID: 21300000, guid: c5ad82b7221455448839183e08c08c03, type: 3}
   effectPrefab: {fileID: 27276203942658101, guid: 260eed3c450776b48ac13660921bd829, type: 3}

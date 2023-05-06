@@ -19,14 +19,14 @@ public class MouseController : MonoBehaviour{
         if (hit.collider != null) {
             GameObject hitObject = hit.collider.gameObject;
             if(hitObject.tag == "Floor"){
-                Debug.Log("on " + hitObject.name);
+                // Debug.Log("on " + hitObject.name);
                 return hit.collider.gameObject;
             }
             if(hitObject.tag == "Enemy"){
                 int x = hitObject.GetComponent<EnemyMovement>().getX();
                 int y = hitObject.GetComponent<EnemyMovement>().getY();
                 GameObject floor = floorController.get(x, y, false);
-                Debug.Log("on " + floor.name);
+                // Debug.Log("on " + floor.name);
                 return floor;
             }
         }
