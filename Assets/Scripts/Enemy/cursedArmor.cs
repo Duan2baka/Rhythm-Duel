@@ -71,7 +71,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                                         Vector3 size = obj.GetComponent<Renderer>().bounds.size;
                                         float scale = floorController.get(i, j, true).GetComponent<Renderer>().bounds.size.x / size.x;
                                         obj.transform.localScale = new Vector3(scale, scale, scale);
-                                        Destroy(obj, 0.3f);
+                                        Destroy(obj, 0.5f);
                                     }
                                 cnt ++;
                             }
@@ -127,7 +127,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                     player.GetComponent<BoxCollider2D>().size.x / 2f,
                     - player.GetComponent<BoxCollider2D>().size.y / 2f, 0f), Quaternion.identity);
                     obj.GetComponent<HandController>().init(player);
-                    Destroy(obj, 0.3f);
+                    Destroy(obj, 0.5f);
                     //Debug.Log(PlayerY);
                     if(floorController.isAccessable(PlayerX, PlayerY + 1, true)){
                         PlayerY = PlayerY + 1;
