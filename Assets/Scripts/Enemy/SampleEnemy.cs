@@ -30,7 +30,7 @@ public class SampleEnemy : MonoBehaviour, Enemy{
             Y = gameObject.GetComponent<EnemyMovement>().getY();
             PlayerX = playerMovement.getX();
             PlayerY = playerMovement.getY();
-            int rnd = Random.Range(1, 10);
+            int rnd = Random.Range(1, 10 + 1);
             if(rnd <= 6){
                 if(Y == 1 && PlayerY == 3 && X == PlayerX){
                     Debug.Log("use skill 3");

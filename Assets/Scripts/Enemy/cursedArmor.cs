@@ -15,7 +15,10 @@ public class cursedArmor : MonoBehaviour, Enemy{
     GameObject obj, tmp;
     int[] cooldown, randomlist;
     private int rnd, cnt;
+    int[] fx, fy;
     void Start(){
+        fx = new int[5]{0, 1, 0, -1, 0};
+        fy = new int[5]{1, 0, -1, 0, 0};
         player = GameObject.FindGameObjectWithTag("Player");
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         positionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<PositionController>();
@@ -40,16 +43,16 @@ public class cursedArmor : MonoBehaviour, Enemy{
             PlayerY = playerMovement.getY();
 
             //**************************
-            rnd = Random.Range(1, 10);
+            rnd = Random.Range(1, 10 + 1);
             if(rnd <= 5){
-                rnd = Random.Range(1, 5);
+                rnd = Random.Range(1, 4 + 1);
                 // Debug.Log(rnd);  
                 if(rnd == 1 && cooldown[0] == 0){
                     cnt = 0;
                     for(int i = 1; i <= 3; i ++)
                         for(int j = 1; j <= 3; j ++)
                             if(floorController.isAccessable(i, j, true)) cnt ++; /// i:row j:column true: isplayer?  -> return if the floor is accessible
-                    if(cnt <= 3) randomMove(X, Y);
+                    if(cnt <= 3) randomMoveAdjacent(X, Y);
                     else{
                         randomlist = new int[cnt];
                         for(int i = 0; i < cnt; i ++)
@@ -95,7 +98,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                     for(int i = 1; i <= 3; i ++)
                         for(int j = 1; j <= 3; j ++)
                             if(floorController.isAccessable(i, j, true)) cnt ++;
-                    if(cnt < 3) randomMove(X, Y);
+                    if(cnt < 3) randomMoveAdjacent(X, Y);
                     else{
                         randomlist = new int[cnt];
                         for(int i = 0; i < cnt; i ++)
@@ -135,9 +138,9 @@ public class cursedArmor : MonoBehaviour, Enemy{
                     idleCounter = 1;
                     cooldown[3] = 5;
                 }
-                else randomMove(X, Y);
+                else randomMoveAdjacent(X, Y);
             }
-            else randomMove(X, Y);
+            else randomMoveAdjacent(X, Y);
         }
 
     }
@@ -148,7 +151,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
             for(int j = 1; j <= 3; j ++)
                 if(floorController.isAccessable(i, j, false)) cnt ++;
         cnt --;
-        int rnd = Random.Range(1, cnt);
+        int rnd = Random.Range(1, cnt + 1);
         cnt = 0;
         for(int i = 1; i <= 3; i ++)
             for(int j = 1; j <= 3; j ++){
@@ -157,6 +160,28 @@ public class cursedArmor : MonoBehaviour, Enemy{
                 cnt ++;
                 if(cnt == rnd) enemyMovement.MoveTo(i, j);
             }
+    }
+    
+    private void randomMoveAdjacent(int x, int y){
+        // Debug.Log("move");
+        cnt = 0;
+        for(int i = 0; i < 4; i ++)
+            if(floorController.isAccessable(x + fx[i], y + fy[i], false)) cnt ++;
+        int rnd = Random.Range(1, cnt + 1);
+        cnt = 0;
+        for(int i = 1; i <= 3; i ++)
+            for(int j = 1; j <= 3; j ++){
+                if(!floorController.isAccessable(i, j, false)) continue;
+                if(i == x && j == y) continue;
+                cnt ++;
+                if(cnt == rnd) enemyMovement.MoveTo(i, j);
+            }
+        
+        for(int i = 0; i < 4; i ++){
+            if(!floorController.isAccessable(x + fx[i], y + fy[i], false)) continue;
+                cnt ++;
+                if(cnt == rnd) enemyMovement.MoveTo(x + fx[i], y + fy[i]);
+        }
     }
 }
 /*

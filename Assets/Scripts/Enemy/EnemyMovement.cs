@@ -7,7 +7,6 @@ public class EnemyMovement : MonoBehaviour{
     public int InitialY = 2;
     private int X;
     private int Y;
-    public GameObject enemy;
     private FloorController floorController;
     private PositionController positionController;
     void Start(){
@@ -25,14 +24,14 @@ public class EnemyMovement : MonoBehaviour{
         if(floorController.isAccessable(X + dx, Y + dy, false)){
             X = X + dx;
             Y = Y + dy;
-            positionController.set(enemy, floorController.get(X, Y, false));
+            positionController.set(gameObject, floorController.get(X, Y, false));
         }
     }
     public void MoveTo(int x, int y){
         if(floorController.isAccessable(x, y, false)){
             X = x;
             Y = y;
-            positionController.set(enemy, floorController.get(X, Y, false));
+            positionController.set(gameObject, floorController.get(X, Y, false));
         }
     }
 

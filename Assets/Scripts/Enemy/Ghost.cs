@@ -14,8 +14,11 @@ public class Ghost : MonoBehaviour, Enemy{
     PositionController positionController;
     GameObject obj, tmp;
     int[] cooldown, randomlist;
+    int[] fx, fy;
     private int rnd, cnt;
     void Start(){
+        fx = new int[5]{0, 1, 0, -1, 0};
+        fy = new int[5]{1, 0, -1, 0, 0};
         player = GameObject.FindGameObjectWithTag("Player");
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         positionController = GameObject.FindGameObjectWithTag("GameController").GetComponent<PositionController>();
@@ -40,9 +43,9 @@ public class Ghost : MonoBehaviour, Enemy{
             PlayerY = playerMovement.getY();
 
             //**************************
-            rnd = Random.Range(1, 10);
+            rnd = Random.Range(1, 10 + 1);
             if(rnd <= 5){
-                rnd = Random.Range(1, 5);
+                rnd = Random.Range(1, 4 + 1);
                 // Debug.Log(rnd);  
                 if(rnd == 1 && cooldown[0] == 0){
                     cnt = 0;
@@ -132,20 +135,20 @@ public class Ghost : MonoBehaviour, Enemy{
                     }
                     cooldown[3] = 5;
                 }
-                else randomMove(X, Y);
+                else randomMoveAdjacent(X, Y);
             }
             else randomMove(X, Y);
         }
 
     }
     private void randomMove(int x, int y){
-        Debug.Log("move");
+        // Debug.Log("move");
         cnt = 0;
         for(int i = 1; i <= 3; i ++)
             for(int j = 1; j <= 3; j ++)
                 if(floorController.isAccessable(i, j, false)) cnt ++;
         cnt --;
-        int rnd = Random.Range(1, cnt);
+        int rnd = Random.Range(1, cnt + 1);
         cnt = 0;
         for(int i = 1; i <= 3; i ++)
             for(int j = 1; j <= 3; j ++){
@@ -156,11 +159,32 @@ public class Ghost : MonoBehaviour, Enemy{
             }
 
     }
+    private void randomMoveAdjacent(int x, int y){
+        // Debug.Log("move");
+        cnt = 0;
+        for(int i = 0; i < 4; i ++)
+            if(floorController.isAccessable(x + fx[i], y + fy[i], false)) cnt ++;
+        int rnd = Random.Range(1, cnt + 1);
+        cnt = 0;
+        for(int i = 1; i <= 3; i ++)
+            for(int j = 1; j <= 3; j ++){
+                if(!floorController.isAccessable(i, j, false)) continue;
+                if(i == x && j == y) continue;
+                cnt ++;
+                if(cnt == rnd) enemyMovement.MoveTo(i, j);
+            }
+        
+        for(int i = 0; i < 4; i ++){
+            if(!floorController.isAccessable(x + fx[i], y + fy[i], false)) continue;
+                cnt ++;
+                if(cnt == rnd) enemyMovement.MoveTo(x + fx[i], y + fy[i]);
+        }
+    }
 }
 /*
 skill id                 skill effect                      skill cooldown       priority          additional       
     1     randomly break three floors in player's side             15                           idle for 3 turns
     2            Emit two energy waves for two rows                5                          
-    3       throw three projectile for three random place          10                          idle for 2 turns
+    3  spawn a ghost from left to right, deal damage to player    5                          idle for 2 turns
     4              push player to the right floor                  5               
 */
