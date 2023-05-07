@@ -2126,6 +2126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   batPrefab: {fileID: 8312883054259742148, guid: 46f8bc830f60bbf49b7d9a4a787beec6, type: 3}
   spawnCircle: {fileID: 1300785945792942980, guid: f89b2e276c95bfe4ab0b741d03af006e, type: 3}
+  bloodControllerPrefab: {fileID: 6511859969654840560, guid: 36adae8029cd3ff4482a59fe40f0f238, type: 3}
 --- !u!1 &930128006
 GameObject:
   m_ObjectHideFlags: 0

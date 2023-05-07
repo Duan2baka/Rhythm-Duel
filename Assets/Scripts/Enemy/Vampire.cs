@@ -5,7 +5,7 @@ using UnityEngine;
 public class Vampire : MonoBehaviour, Enemy{
     int idleCounter = 0;
     int X, Y, PlayerX, PlayerY;
-    public GameObject batPrefab, spawnCircle;
+    public GameObject batPrefab, spawnCircle, bloodControllerPrefab;
     private GameObject player;
     PlayerMovement playerMovement;
     EnemyMovement enemyMovement;
@@ -42,6 +42,7 @@ public class Vampire : MonoBehaviour, Enemy{
                 3, false, 10, 1.1f, -1, "Player");
             }
             if(spawnPeriod == 0){
+                idleCounter = 2;
                 Destroy(spawnedCircle, 0.3f);
             }
         }
@@ -71,6 +72,10 @@ public class Vampire : MonoBehaviour, Enemy{
                     cooldown[1] = 20;
                 }
                 else if(rnd == 3 && cooldown[2] == 0){ /// 3
+                    obj = Instantiate(bloodControllerPrefab, Vector3.zero, Quaternion.identity);
+                    obj.GetComponent<bloodController>().init("Player", 1, 1, true, 10);
+                    idleCounter = 3;
+                    cooldown[2] = 5;
                 }
                 else if(rnd == 4 && cooldown[3] == 0){ /// 4
                 }
