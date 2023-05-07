@@ -2221,7 +2221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 499431701076290564, guid: 46361ba6dde2ee6488a9a6921cd25a55, type: 3}
       propertyPath: timeGap
-      value: 0.799
+      value: 0.79
       objectReference: {fileID: 0}
     - target: {fileID: 499431701076290566, guid: 46361ba6dde2ee6488a9a6921cd25a55, type: 3}
       propertyPath: m_audioClip
