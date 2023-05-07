@@ -13,6 +13,7 @@ TagManager:
   - CardPanel
   - PausePanel
   - ChipPanel
+  - MusicController
   layers:
   - Default
   - TransparentFX
