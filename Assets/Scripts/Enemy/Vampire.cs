@@ -53,7 +53,7 @@ public class Vampire : MonoBehaviour, Enemy{
             Y = gameObject.GetComponent<EnemyMovement>().getY();
             PlayerX = playerMovement.getX();
             PlayerY = playerMovement.getY();
-            rnd = Random.Range(1, 10 + 1);/*
+            rnd = Random.Range(1, 10 + 1);
             if(rnd <= 5){
                 rnd = Random.Range(1, 4 + 1);
                 // Debug.Log(rnd);  
@@ -79,14 +79,8 @@ public class Vampire : MonoBehaviour, Enemy{
             else{
                 randomMoveAdjacent(X, Y);
                 idleCounter = 1;
-            }*/
+            }
             
-                    spawnPeriod = 8;
-                    spawnedCircle = Instantiate(spawnCircle, transform.position - new Vector3(
-                    0f, - gameObject.GetComponent<BoxCollider2D>().size.y / 2f, 0f)
-                    , Quaternion.identity);
-                    spawnedCircle.GetComponent<MagicCircleController>().init(gameObject);
-                    cooldown[1] = 20;
         }
     }
     private void randomMove(int x, int y){
