@@ -29,10 +29,23 @@ public class RhythmController : MonoBehaviour{
         flowManager = GameObject.Find("GameController").GetComponent<FlowManager>();
         manaManager = GameObject.Find("GameController").GetComponent<ManaManager>();
     }
+    private bool IsOverlap(RectTransform rect1, RectTransform rect2){
+        Vector3[] corners1 = new Vector3[4];
+        rect1.GetWorldCorners(corners1);
+        Vector3[] corners2 = new Vector3[4];
+        rect2.GetWorldCorners(corners2);
+        Rect r1 = new Rect(corners1[0].x, corners1[0].y, rect1.rect.width, rect1.rect.height);
+        Rect r2 = new Rect(corners2[0].x, corners2[0].y, rect2.rect.width, rect2.rect.height);
+
+        if (r1.x + r1.width < r2.x || r1.x > r2.x + r2.width || r1.y + r1.height < r2.y || r1.y > r2.y + r2.height)
+            return false;
+        else
+            return true;
+    }
 
     void Update(){
         counter += Time.deltaTime;
-        if(counter > timeGap){
+        if(counter >= timeGap){
             counter = 0f;
             cnt++;
             Pos = new Vector3(bar.rect.width, 0, 0);
@@ -46,10 +59,8 @@ public class RhythmController : MonoBehaviour{
         tmp = null;
         foreach(GameObject entity in Rhythms){
             entity.transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
-            
-            Rect rect1 = entity.GetComponent<RectTransform>().rect;
-            Rect rect2 = trigger.GetComponent<RectTransform>().rect;
-            if(rect1.Overlaps(rect2)){
+            bool flag = IsOverlap(entity.GetComponent<RectTransform>(), trigger.GetComponent<RectTransform>());
+            if(flag){
                 OK = true;
                 if(tmp == null) tmp = entity;
                 else if(entity.transform.position.x < tmp.transform.position.x) tmp = entity;
@@ -61,7 +72,7 @@ public class RhythmController : MonoBehaviour{
             }*/
             
             
-            if(entity.transform.position.x < trigger.transform.position.x - OKthreshold){
+            if(entity.transform.position.x < trigger.transform.position.x && !flag){
                 Destroy(entity);
                 flowManager.exhausted = true;
                 flowManager.punish = true;
@@ -99,7 +110,7 @@ public class RhythmController : MonoBehaviour{
         if(OK){
             flowManager.exhausted = true;
             OK = false;
-            //Debug.Log("OK");
+            // Debug.Log("OK");
             return true;
         }
         //Debug.Log("Miss");

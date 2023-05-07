@@ -27,10 +27,6 @@ public class FloorController : MonoBehaviour{
                 for(int k = 1; k <= 3; k ++)
                     floor[i, j, k].GetComponent<FloorStatus>().refresh();
     }
-
-    void Update(){
-        
-    }
     public bool isAccessable(int X, int Y, bool isPlayer){
         /*if(isPlayer)*/ if(X < 1 || X > 3 || Y < 1 || Y > 3) return false;
         if(!get(X, Y, isPlayer).GetComponent<FloorStatus>().getStatus()) return false;
