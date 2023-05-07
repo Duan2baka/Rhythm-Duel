@@ -7,7 +7,6 @@ public class Lich : MonoBehaviour, Enemy{
     int X, Y, PlayerX, PlayerY;
     public GameObject knightPrefab, attackPawnPrefab, guardPawnPrefab, rookPrefab;
     private GameObject player;
-    private bool is_invisible;
     PlayerMovement playerMovement;
     EnemyMovement enemyMovement;
     FloorController floorController;
@@ -16,12 +15,10 @@ public class Lich : MonoBehaviour, Enemy{
     GameObject obj, tmp;
     int[] cooldown;
     int[] fx, fy;
-    private int rnd, cnt, startHP = -1;
+    private int rnd, cnt;
     bool flag;
     void Start(){
         flag = false;
-        startHP = -1;
-        is_invisible = false;
         fx = new int[5]{0, 1, 0, -1, 0};
         fy = new int[5]{1, 0, -1, 0, 0};
         player = GameObject.FindGameObjectWithTag("Player");
@@ -33,13 +30,6 @@ public class Lich : MonoBehaviour, Enemy{
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         enemyMovement = gameObject.GetComponent<EnemyMovement>();
     }
-    private void Update() {
-        if(is_invisible && startHP != gameObject.GetComponent<HealthController>().getHP()){
-            is_invisible = false;
-            startHP = -1;
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-        }
-    }
     public void takeAction(){
         for(int i = 0; i <= 4; i ++)
             if(cooldown[i] != 0) cooldown[i] --;
@@ -47,9 +37,6 @@ public class Lich : MonoBehaviour, Enemy{
             idleCounter --;
         }
         else{
-            if(is_invisible){
-                gameObject.GetComponent<HealthController>().heal(3);
-            }
             X = gameObject.GetComponent<EnemyMovement>().getX();
             Y = gameObject.GetComponent<EnemyMovement>().getY();
             PlayerX = playerMovement.getX();
