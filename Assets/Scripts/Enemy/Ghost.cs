@@ -44,10 +44,8 @@ public class Ghost : MonoBehaviour, Enemy{
             if(cooldown[i] != 0) cooldown[i] --;
         if(idleCounter != 0){
             idleCounter --;
-            //Debug.Log("enemyMovement: idle");
         }
         else{
-            // ****** get the position
             if(is_invisible){
                 gameObject.GetComponent<HealthController>().heal(3);
             }
@@ -57,7 +55,6 @@ public class Ghost : MonoBehaviour, Enemy{
             PlayerX = playerMovement.getX();
             PlayerY = playerMovement.getY();
 
-            //**************************
             rnd = Random.Range(1, 10 + 1);
             if(rnd <= 5){
                 rnd = Random.Range(1, 4 + 1);

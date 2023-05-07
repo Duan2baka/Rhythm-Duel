@@ -32,26 +32,21 @@ public class cursedArmor : MonoBehaviour, Enemy{
             if(cooldown[i] != 0) cooldown[i] --;
         if(idleCounter != 0){
             idleCounter --;
-            //Debug.Log("enemyMovement: idle");
         }
         else{
-            // ****** get the position
-
             X = gameObject.GetComponent<EnemyMovement>().getX();
             Y = gameObject.GetComponent<EnemyMovement>().getY();
             PlayerX = playerMovement.getX();
             PlayerY = playerMovement.getY();
 
-            //**************************
             rnd = Random.Range(1, 10 + 1);
             if(rnd <= 5){
                 rnd = Random.Range(1, 4 + 1);
-                // Debug.Log(rnd);  
                 if(rnd == 1 && cooldown[0] == 0){
                     cnt = 0;
                     for(int i = 1; i <= 3; i ++)
                         for(int j = 1; j <= 3; j ++)
-                            if(floorController.isAccessable(i, j, true)) cnt ++; /// i:row j:column true: isplayer?  -> return if the floor is accessible
+                            if(floorController.isAccessable(i, j, true)) cnt ++; 
                     if(cnt <= 3) randomMoveAdjacent(X, Y);
                     else{
                         randomlist = new int[cnt];
