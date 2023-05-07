@@ -65,7 +65,7 @@ public class RhythmController : MonoBehaviour{
                 Destroy(entity);
                 flowManager.exhausted = true;
                 flowManager.punish = true;
-                Debug.Log("Miss");
+                // Debug.Log("Miss");
             }
         }
     }
