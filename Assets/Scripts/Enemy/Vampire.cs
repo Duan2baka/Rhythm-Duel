@@ -12,7 +12,7 @@ public class Vampire : MonoBehaviour, Enemy{
     FloorController floorController;
     PositionController positionController;
     CardPanelController cardPanelController;
-    GameObject obj, tmp, spawnedCircle;
+    GameObject obj, spawnedCircle;
     int[] cooldown;
     int[] fx, fy;
     private int rnd, cnt, spawnPeriod;
@@ -72,8 +72,22 @@ public class Vampire : MonoBehaviour, Enemy{
                     cooldown[1] = 20;
                 }
                 else if(rnd == 3 && cooldown[2] == 0){ /// 3
-                    obj = Instantiate(bloodControllerPrefab, Vector3.zero, Quaternion.identity);
-                    obj.GetComponent<bloodController>().init("Player", 1, 1, true, 10);
+                    cnt = 0;
+                    for(int i = 1; i <= 3; i ++)
+                        for(int j = 1; j <= 3; j ++)
+                            if(floorController.isAccessable(i, j, true)) cnt ++;
+                    rnd = Random.Range(1, cnt + 1);
+                    cnt = 0;
+                    for(int i = 1; i <= 3; i ++)
+                        for(int j = 1; j <= 3; j ++){
+                            if(!floorController.isAccessable(i, j, true)) continue;
+                            cnt ++;
+                            if(rnd == cnt){
+                                obj = Instantiate(bloodControllerPrefab, Vector3.zero, Quaternion.identity);
+                                obj.GetComponent<bloodController>().init("Player", i, j, true, 10);
+                                break;
+                            }
+                        }
                     idleCounter = 3;
                     cooldown[2] = 5;
                 }
