@@ -5,7 +5,7 @@ using UnityEngine;
 public class Lich : MonoBehaviour, Enemy{
     int idleCounter = 0;
     int X, Y, PlayerX, PlayerY;
-    public GameObject knightPrefab;
+    public GameObject knightPrefab, pawnPrefab;
     private GameObject player;
     private bool is_invisible;
     PlayerMovement playerMovement;
@@ -71,6 +71,11 @@ public class Lich : MonoBehaviour, Enemy{
                     cooldown[0] = 15;
                 }
                 else if(rnd == 2 && cooldown[1] == 0){ /// 2
+                    obj = Instantiate(pawnPrefab, transform.position, Quaternion.identity);
+                    rnd = Random.Range(1, 3 + 1);
+                    obj.GetComponent<AttackPawnController>().init(-1, "Player", rnd, 1, false, 10);
+                    idleCounter = 3;
+                    cooldown[0] = 10;
                 }
                 else if(rnd == 3 && cooldown[2] == 0){ /// 3
                 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileItemMovement : MonoBehaviour, Movement{
-
     public int getX(){
         return gameObject.GetComponent<ProjectileItem>().currentX;
     }

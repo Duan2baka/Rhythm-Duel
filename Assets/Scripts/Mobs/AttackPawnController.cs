@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnightController : MonoBehaviour{
+public class AttackPawnController : MonoBehaviour{
     FloorController floorController;
     FlowManager flowManager;
     string target;
-    int direction, Timer, dmg, top, tmpX, tmpY;
-    bool tmpSide, flag, status;
-    int[] dirList;
+    int direction, Timer, dmg, top, tmpX, tmpY, status;
+    bool tmpSide, flag;
+    float timeGap, height;
     public int currentX, currentY;
     public bool currentSide;
-    private float timeGap, height;
-    private Vector3 tmpVec, tmpTargetVec;
+    int[] dirList;
     GameObject tmp;
     public GameObject aimPrefab;
+    private Vector3 tmpVec, tmpTargetVec;
     public void init(int dir, string tag, int startX, int startY, bool startSide, int Dmg){
         floorController = GameObject.FindGameObjectWithTag("GameController").GetComponent<FloorController>();
         flowManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<FlowManager>();
@@ -31,8 +31,8 @@ public class KnightController : MonoBehaviour{
         transform.position = floorController.getPosition(startX, startY, startSide);
         timeGap = GameObject.FindGameObjectWithTag("GameController").GetComponent<RhythmController>().timeGap;
         height = tmp.GetComponent<BoxCollider2D>().size.y;
-        dirList = new int[5];
-        status = false;
+        dirList = new int[3];
+        status = 0;
     }
     void TryMove(int dx, int dy){
         tmpX = currentX + dx;
@@ -64,29 +64,25 @@ public class KnightController : MonoBehaviour{
         int T = flowManager.getTimeStamp();
         if(Timer != T){
             Timer = T;
-            if(status){
+            if(status == 0)
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
-                status = false;
-            }
-            else{
+            else if(status == 1){
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
                 top = 0; flag = false;
-                TryMove(-2, direction);
-                if(!flag) TryMove(-1, direction * 2);
-                if(!flag) TryMove(1, direction * 2);
-                if(!flag) TryMove(2, direction);
+                TryMove(-1, direction);
+                if(!flag) TryMove(1, direction);
                 //Debug.Log(top);
                 //Debug.Log(dirList);
                 if(top == 0){ Destroy(gameObject); return; }
                 if(flag){
                     tmpX = currentX + dirList[top - 1];
-                    tmpY = currentY + (3 - Mathf.Abs(dirList[top - 1])) * direction;
+                    tmpY = currentY + direction;
                     tmpSide = currentSide;
                 }
                 else{
                     int rnd = Random.Range(0, top);
                     tmpX = currentX + dirList[rnd];
-                    tmpY = currentY + (3 - Mathf.Abs(dirList[rnd])) * direction;
+                    tmpY = currentY + direction;
                     tmpSide = currentSide;
                 }
                 //Debug.Log(top);
@@ -99,11 +95,14 @@ public class KnightController : MonoBehaviour{
                     tmpY -= 3;
                 }
                 StartCoroutine(MoveCoroutine(tmpX, tmpY, tmpSide, 1));
-                status = true;
             }
+            else if(status > 5) Destroy(gameObject);
+            status ++;
             //StartCoroutine(MoveCoroutine(1, 1, true, 1));
         }
     }
+
+    
     IEnumerator MoveCoroutine(int targetX, int targetY, bool targetSide, int depth){
         float t = 0;
         //Debug.Log("current:" + currentX + " " + currentY + " " + currentSide + " target: "+ targetX + " " + targetY + " " + targetSide);
@@ -150,7 +149,6 @@ public class KnightController : MonoBehaviour{
             }
         }
     }
-
     private void OnDestroy() {
         if(floorController) floorController.get(currentX, currentY, currentSide).GetComponent<FloorStatus>().changeBlocked(-1);
     }
