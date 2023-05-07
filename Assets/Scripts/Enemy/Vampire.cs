@@ -46,44 +46,15 @@ public class Vampire : MonoBehaviour, Enemy{
                 rnd = Random.Range(1, 4 + 1);
                 // Debug.Log(rnd);  
                 if(rnd == 1 && cooldown[0] == 0){ /// 1
-                    obj = Instantiate(knightPrefab, transform.position, Quaternion.identity);
-                    rnd = Random.Range(1, 3 + 1);
-                    obj.GetComponent<KnightController>().init(-1, "Player", rnd, 3, false, 10);
-                    idleCounter = 3;
-                    cooldown[0] = 15;
-                }
-                else if(rnd == 2 && cooldown[1] == 0){ /// 2
-                    obj = Instantiate(attackPawnPrefab, transform.position, Quaternion.identity);
-                    rnd = Random.Range(1, 3 + 1);
-                    obj.GetComponent<AttackPawnController>().init(-1, "Player", rnd, 1, false, 10);
+                    playerMovement.setReverse(3);
                     idleCounter = 3;
                     cooldown[1] = 10;
                 }
+                else if(rnd == 2 && cooldown[1] == 0){ /// 2
+                }
                 else if(rnd == 3 && cooldown[2] == 0){ /// 3
-                    obj = Instantiate(guardPawnPrefab, transform.position, Quaternion.identity);
-                    rnd = Random.Range(1, 3 + 1);
-                    obj.GetComponent<GuardPawnController>().init(-1, "Player", rnd, 1, false, 10);
-                    idleCounter = 3;
-                    cooldown[2] = 10;
                 }
                 else if(rnd == 4 && cooldown[3] == 0){ /// 4
-                    cnt = 0;
-                    for(int i = 1; i <= 3; i ++)
-                        for(int j = 1; j <= 3; j ++)
-                            if(floorController.isAccessable(i, j, false)) cnt ++;
-                    rnd = Random.Range(1, cnt + 1);
-                    cnt = 0;
-                    for(int i = 1; i <= 3; i ++)
-                        for(int j = 1; j <= 3; j ++){
-                            if(!floorController.isAccessable(i, j, false)) continue;
-                            cnt ++;
-                            if(rnd == cnt){
-                                obj = Instantiate(rookPrefab, floorController.getPosition(i, j, true), Quaternion.identity);
-                                obj.GetComponent<RookController>().init(-1, "Player", i, j, false, 10);
-                            }
-                        }
-                    idleCounter = 3;
-                    cooldown[3] = 10;
                 }
                 else randomMoveAdjacent(X, Y);
             }

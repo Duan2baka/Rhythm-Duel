@@ -1972,6 +1972,7 @@ GameObject:
   - component: {fileID: 927346901}
   - component: {fileID: 927346900}
   - component: {fileID: 927346899}
+  - component: {fileID: 927346905}
   m_Layer: 0
   m_Name: Vampire
   m_TagString: Enemy
@@ -2111,6 +2112,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &927346905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927346898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4fb834717e18d4e8292f6858b3a670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knightPrefab: {fileID: 0}
+  attackPawnPrefab: {fileID: 0}
+  guardPawnPrefab: {fileID: 0}
+  rookPrefab: {fileID: 0}
 --- !u!1 &930128006
 GameObject:
   m_ObjectHideFlags: 0
@@ -5339,6 +5356,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2119955092, guid: f7fc68b7644e1384284891c0aa0222be, type: 3}
+      propertyPath: reversePrefab
+      value: 
+      objectReference: {fileID: 4520726595507246965, guid: 5cef8e3a4daf01a4aba1eb0f32780fc5, type: 3}
     - target: {fileID: 2119955093, guid: f7fc68b7644e1384284891c0aa0222be, type: 3}
       propertyPath: slider
       value: 
@@ -5393,7 +5414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 935606805953502505, guid: f7fc68b7644e1384284891c0aa0222be, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1184163983353364383, guid: f7fc68b7644e1384284891c0aa0222be, type: 3}
       propertyPath: m_Name

@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour, Movement{
     public int InitialX = 2;
     public int InitialY = 2;
-    private int X;
-    private int Y;
-    private GameObject player;
+    public GameObject reversePrefab;
+    private int X, Y, reverseCounter;
+    private GameObject player, obj;
     private PauseController pauseController;
     private RhythmController rhythmController;
     private FloorController floorController;
@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour, Movement{
     private ManaManager manaManager;
 
     void Start(){
+        reverseCounter = 0;
         X = InitialX;
         Y = InitialY;
         
@@ -72,43 +73,92 @@ public class PlayerMovement : MonoBehaviour, Movement{
         }
         else if(Input.GetKeyDown(KeyCode.A)){
             if(rhythmController.getInput()){
-                if(floorController.isAccessable(X, Y - 1, true)){
-                    // Debug.Log("A pressed");
-                    Y = Y - 1;
-                    positionController.set(player, floorController.get(X, Y, true));
-                    rhythmController.operation(true);
+                if(reverseCounter > 0){
+                    if(floorController.isAccessable(X, Y + 1, true)){
+                        // Debug.Log("A pressed");
+                        Y = Y + 1;
+                        positionController.set(player, floorController.get(X, Y, true));
+                        rhythmController.operation(true);
+                    }
+                    else rhythmController.operation(false);
+                    reverseCounter --;
+                    checkReverseCounter();
                 }
-                else rhythmController.operation(false);
+                else{
+                    if(floorController.isAccessable(X, Y - 1, true)){
+                        // Debug.Log("A pressed");
+                        Y = Y - 1;
+                        positionController.set(player, floorController.get(X, Y, true));
+                        rhythmController.operation(true);
+                    }
+                    else rhythmController.operation(false);
+                }
             }
         }
         else if(Input.GetKeyDown(KeyCode.W)){
             if(rhythmController.getInput()){
-                if(floorController.isAccessable(X - 1, Y, true)){
-                    X = X - 1;
-                    positionController.set(player, floorController.get(X, Y, true));
-                    rhythmController.operation(true);
+                if(reverseCounter > 0){
+                    if(floorController.isAccessable(X + 1, Y, true)){
+                        X = X + 1;
+                        positionController.set(player, floorController.get(X, Y, true));
+                        rhythmController.operation(true);
+                    }
+                    else rhythmController.operation(false);
+                    reverseCounter --;
+                    checkReverseCounter();
                 }
-                else rhythmController.operation(false);
+                else{
+                    if(floorController.isAccessable(X - 1, Y, true)){
+                        X = X - 1;
+                        positionController.set(player, floorController.get(X, Y, true));
+                        rhythmController.operation(true);
+                    }
+                    else rhythmController.operation(false);
+                }
             }
         }
         else if(Input.GetKeyDown(KeyCode.D)){
             if(rhythmController.getInput()){
-                if(floorController.isAccessable(X, Y + 1, true)){
-                    Y = Y + 1;
-                    positionController.set(player, floorController.get(X, Y, true));
-                    rhythmController.operation(true);
+                if(reverseCounter > 0){
+                    if(floorController.isAccessable(X, Y - 1, true)){
+                        Y = Y - 1;
+                        positionController.set(player, floorController.get(X, Y, true));
+                        rhythmController.operation(true);
+                    }
+                    else rhythmController.operation(false);
+                    reverseCounter --;
+                    checkReverseCounter();
                 }
-                else rhythmController.operation(false);
+                else{
+                    if(floorController.isAccessable(X, Y + 1, true)){
+                        Y = Y + 1;
+                        positionController.set(player, floorController.get(X, Y, true));
+                        rhythmController.operation(true);
+                    }
+                    else rhythmController.operation(false);
+                }
             }
         }
         else if(Input.GetKeyDown(KeyCode.S)){
             if(rhythmController.getInput()){
-                if(floorController.isAccessable(X + 1, Y, true)){
-                    X = X + 1;
-                    positionController.set(player, floorController.get(X, Y, true));
-                    rhythmController.operation(true);
+                if(reverseCounter > 0){
+                    if(floorController.isAccessable(X - 1, Y, true)){
+                        X = X - 1;
+                        positionController.set(player, floorController.get(X, Y, true));
+                        rhythmController.operation(true);
+                    }
+                    else rhythmController.operation(false);
+                    reverseCounter --;
+                    checkReverseCounter();
                 }
-                else rhythmController.operation(false);
+                else{
+                    if(floorController.isAccessable(X + 1, Y, true)){
+                        X = X + 1;
+                        positionController.set(player, floorController.get(X, Y, true));
+                        rhythmController.operation(true);
+                    }
+                    else rhythmController.operation(false);
+                }
             }
         }
         else if(Input.GetKeyDown(KeyCode.P)){
@@ -140,5 +190,17 @@ public class PlayerMovement : MonoBehaviour, Movement{
     }
     public void setY(int y){
         Y = y;
+    }
+    public void setReverse(int cnt){
+        if(reverseCounter == 0){
+            obj = Instantiate(reversePrefab, transform.position - new Vector3(
+                    0f, - gameObject.GetComponent<BoxCollider2D>().size.y, 0f), Quaternion.identity);
+            obj.GetComponent<ReverseController>().init(player);
+        }
+        reverseCounter += cnt;
+    }
+    private void checkReverseCounter(){
+        if(reverseCounter == 0)
+            Destroy(obj);
     }
 }
