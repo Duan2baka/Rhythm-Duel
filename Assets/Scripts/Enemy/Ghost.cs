@@ -48,6 +48,7 @@ public class Ghost : MonoBehaviour, Enemy{
         else{
             if(is_invisible){
                 gameObject.GetComponent<HealthController>().heal(3);
+                startHP = gameObject.GetComponent<HealthController>().getHP();
             }
 
             X = gameObject.GetComponent<EnemyMovement>().getX();
