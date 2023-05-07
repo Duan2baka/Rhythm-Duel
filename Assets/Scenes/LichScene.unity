@@ -188,7 +188,7 @@ MonoBehaviour:
   emptyObject: {fileID: 6186407110773724692, guid: ff727ca15ba8b7d4cade4a89493bf1eb, type: 3}
   firstRhythmSpawn: 2.7
   timeGap: 0.5217184
-  movePeriod: 1
+  movePeriod: 2
 --- !u!4 &20489208
 Transform:
   m_ObjectHideFlags: 0
@@ -4105,6 +4105,10 @@ PrefabInstance:
     - target: {fileID: 499431701076290564, guid: 46361ba6dde2ee6488a9a6921cd25a55, type: 3}
       propertyPath: timeGap
       value: 0.9229
+      objectReference: {fileID: 0}
+    - target: {fileID: 499431701076290564, guid: 46361ba6dde2ee6488a9a6921cd25a55, type: 3}
+      propertyPath: firstRhythmSpawn
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 499431701076290566, guid: 46361ba6dde2ee6488a9a6921cd25a55, type: 3}
       propertyPath: m_audioClip

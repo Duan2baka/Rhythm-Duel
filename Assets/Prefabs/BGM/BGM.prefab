@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 499431701076290564}
   - component: {fileID: 499431701076290566}
   m_Layer: 0
-  m_Name: VampireBGM
+  m_Name: BGM
   m_TagString: MusicController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
