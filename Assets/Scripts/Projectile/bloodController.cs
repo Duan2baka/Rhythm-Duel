@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bloodController : MonoBehaviour{
+public class BloodController : MonoBehaviour{
     FloorController floorController;
     FlowManager flowManager;
     string target;
-    int direction, Timer, dmg, currentX, currentY;
+    int Timer, dmg, currentX, currentY;
     bool currentSide;
     int status;
     private float timeGap;

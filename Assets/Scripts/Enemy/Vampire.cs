@@ -5,7 +5,7 @@ using UnityEngine;
 public class Vampire : MonoBehaviour, Enemy{
     int idleCounter = 0;
     int X, Y, PlayerX, PlayerY;
-    public GameObject batPrefab, spawnCircle, bloodControllerPrefab;
+    public GameObject batPrefab, spawnCircle, bloodControllerPrefab, bloodRowControllerPrefab;
     private GameObject player;
     PlayerMovement playerMovement;
     EnemyMovement enemyMovement;
@@ -15,7 +15,7 @@ public class Vampire : MonoBehaviour, Enemy{
     GameObject obj, spawnedCircle;
     int[] cooldown;
     int[] fx, fy;
-    private int rnd, cnt, spawnPeriod;
+    private int rnd, cnt, spawnPeriod, precnt;
     bool flag;
     void Start(){
         flag = false;
@@ -84,14 +84,34 @@ public class Vampire : MonoBehaviour, Enemy{
                             cnt ++;
                             if(rnd == cnt){
                                 obj = Instantiate(bloodControllerPrefab, Vector3.zero, Quaternion.identity);
-                                obj.GetComponent<bloodController>().init("Player", i, j, true, 10);
-                                break;
+                                obj.GetComponent<BloodController>().init("Player", i, j, true, 10);
+                            }
+                        }
+                    precnt = rnd;
+                    rnd = Random.Range(1, cnt);
+                    cnt = 0;
+                    for(int i = 1; i <= 3; i ++)
+                        for(int j = 1; j <= 3; j ++){
+                            if(!floorController.isAccessable(i, j, true)) continue;
+                            if(cnt + 1 == precnt){
+                                precnt = -1;
+                                continue;
+                            }
+                            cnt ++;
+                            if(rnd == cnt){
+                                obj = Instantiate(bloodControllerPrefab, Vector3.zero, Quaternion.identity);
+                                obj.GetComponent<BloodController>().init("Player", i, j, true, 10);
                             }
                         }
                     idleCounter = 3;
                     cooldown[2] = 5;
                 }
                 else if(rnd == 4 && cooldown[3] == 0){ /// 4
+                    rnd = Random.Range(1, 4);
+                    obj = Instantiate(bloodRowControllerPrefab, Vector3.zero, Quaternion.identity);
+                    obj.GetComponent<BloodRowController>().init("Player", rnd, 3, true, 10, -1);
+                    idleCounter = 5;
+                    cooldown[3] = 15;
                 }
                 else randomMoveAdjacent(X, Y);
             }
@@ -99,7 +119,6 @@ public class Vampire : MonoBehaviour, Enemy{
                 randomMoveAdjacent(X, Y);
                 idleCounter = 1;
             }
-            
         }
     }
     private void randomMove(int x, int y){

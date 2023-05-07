@@ -113,7 +113,7 @@ public class Ghost : MonoBehaviour, Enemy{
                     gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.1f);
                     startHP = gameObject.GetComponent<HealthController>().getHP();
                     cooldown[3] = 20;
-                    idleCounter = 1;
+                    idleCounter = 3;
                 }
                 else randomMoveAdjacent(X, Y);
             }
