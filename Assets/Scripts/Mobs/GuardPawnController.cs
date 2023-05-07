@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackPawnController : MonoBehaviour, Movement{
+public class GuardPawnController : MonoBehaviour, Movement{
     FloorController floorController;
     FlowManager flowManager;
     string target;
-    int direction, Timer, dmg, top, tmpX, tmpY, status;
+    int direction, Timer, dmg, tmpX, tmpY, status;
     bool tmpSide, flag;
     float timeGap, height;
     public int currentX, currentY;
     public bool currentSide;
-    int[] dirList;
     GameObject tmp;
     public GameObject aimPrefab;
     private Vector3 tmpVec, tmpTargetVec;
@@ -31,31 +30,7 @@ public class AttackPawnController : MonoBehaviour, Movement{
         transform.position = floorController.getPosition(startX, startY, startSide);
         timeGap = GameObject.FindGameObjectWithTag("GameController").GetComponent<RhythmController>().timeGap;
         height = tmp.GetComponent<BoxCollider2D>().size.y;
-        dirList = new int[3];
         status = 0;
-    }
-    void TryMove(int dx, int dy){
-        tmpX = currentX + dx;
-        tmpY = currentY + dy;
-        tmpSide = currentSide;
-        if(tmpY <= 0)
-            if(tmpSide == false){
-                tmpSide = true;
-                tmpY += 3;
-            }
-            else return;
-        else if(tmpY > 3)
-            if(tmpSide == true){
-                tmpSide = false;
-                tmpY -= 3;
-            }
-            else return;
-        if(tmpX > 3 || tmpX <= 0) return;
-        if(floorController.isAccessable(tmpX, tmpY, tmpSide))
-            dirList[top ++] = dx;
-        else return;
-        if(floorController.FindObjectOn_WithTag(tmpX, tmpY, tmpSide, target))
-            flag = true;
     }
     void Update(){
         if(!flowManager) return;
@@ -68,50 +43,63 @@ public class AttackPawnController : MonoBehaviour, Movement{
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
             else if(status == 1){
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f);
-                top = 0; flag = false;
-                TryMove(-1, direction);
-                if(!flag) TryMove(1, direction);
-                //Debug.Log(top);
-                //Debug.Log(dirList);
-                if(top == 0){ Destroy(gameObject); return; }
-                if(flag){
-                    tmpX = currentX + dirList[top - 1];
-                    tmpY = currentY + direction;
-                    tmpSide = currentSide;
+                flag = false;
+                int rnd = Random.Range(1, 3);
+                if(rnd == 1){
+                    for(int i = 1; i <= 2 && !flag; i ++){
+                        tmpX = currentX;
+                        tmpY = currentY + i * direction;
+                        tmpSide = currentSide;
+                        if(tmpY <= 0)
+                            if(tmpSide == false){
+                                tmpSide = true;
+                                tmpY += 3;
+                            }
+                            else continue;
+                        else if(tmpY > 3)
+                            if(tmpSide == true){
+                                tmpSide = false;
+                                tmpY -= 3;
+                            }
+                            else continue;
+                        if(tmpX > 3 || tmpX <= 0) return;
+                        if(floorController.isAccessable(tmpX, tmpY, tmpSide) && !floorController.FindObjectOn_WithTag(tmpX, tmpY, tmpSide, target)){
+                            StartCoroutine(MoveCoroutine(tmpX, tmpY, tmpSide, 1));
+                            flag = true;
+                        }
+                    }
                 }
                 else{
-                    int rnd = Random.Range(0, top);
-                    tmpX = currentX + dirList[rnd];
-                    tmpY = currentY + direction;
-                    tmpSide = currentSide;
+                    for(int i = 2; i >= 1 && !flag; i --){
+                        tmpX = currentX;
+                        tmpY = currentY + i * direction;
+                        tmpSide = currentSide;
+                        if(tmpY <= 0)
+                            if(tmpSide == false){
+                                tmpSide = true;
+                                tmpY += 3;
+                            }
+                            else continue;
+                        else if(tmpY > 3)
+                            if(tmpSide == true){
+                                tmpSide = false;
+                                tmpY -= 3;
+                            }
+                            else continue;
+                        if(tmpX > 3 || tmpX <= 0) return;
+                        if(floorController.isAccessable(tmpX, tmpY, tmpSide) && !floorController.FindObjectOn_WithTag(tmpX, tmpY, tmpSide, target)){
+                            StartCoroutine(MoveCoroutine(tmpX, tmpY, tmpSide, 1));
+                            flag = true;
+                        }
+                    }
                 }
-                if(tmpY <= 0 && tmpSide == false){
-                    tmpSide = true;
-                    tmpY += 3;
-                }
-                else if(tmpY > 3 && tmpSide == true){
-                    tmpSide = false;
-                    tmpY -= 3;
-                }
-                StartCoroutine(MoveCoroutine(tmpX, tmpY, tmpSide, 1));
             }
-            else if(status == 4){
-                gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f);
-            }
-            else if(status >= 5){
-                Destroy(gameObject);
-                //Debug.Log("boom" + currentX + " " + currentY + " " + currentSide);
-                floorController.get(currentX, currentY, currentSide).GetComponent<FloorStatus>().takeDamage(100, target);
-            }
+            else if(status > 5) Destroy(gameObject);
             status ++;
-            //StartCoroutine(MoveCoroutine(1, 1, true, 1));
         }
     }
-
-    
     IEnumerator MoveCoroutine(int targetX, int targetY, bool targetSide, int depth){
         float t = 0;
-        //Debug.Log("current:" + currentX + " " + currentY + " " + currentSide + " target: "+ targetX + " " + targetY + " " + targetSide);
         tmpVec = floorController.getPosition(currentX, currentY, currentSide);
         tmpTargetVec = floorController.getPosition(targetX, targetY, targetSide);
         if(depth == 1){

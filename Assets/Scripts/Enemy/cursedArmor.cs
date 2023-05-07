@@ -64,7 +64,7 @@ public class cursedArmor : MonoBehaviour, Enemy{
                                 if(!floorController.isAccessable(i, j, true)) continue;
                                 for(int k = 0; k < 3; k ++)
                                     if(randomlist[k] == cnt){
-                                        floorController.get(i, j, true).GetComponent<FloorStatus>().takeDamage(100);
+                                        floorController.get(i, j, true).GetComponent<FloorStatus>().takeDamage(100, "Player");
                                         Vector3 position = floorController.getPosition(i, j, true);
                                         GameObject obj = Instantiate(shovelPrefab, position +
                                         new Vector3(0f, shovelPrefab.GetComponent<Renderer>().bounds.size.y / 2f, 0f), Quaternion.identity);

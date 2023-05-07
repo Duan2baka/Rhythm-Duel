@@ -1341,7 +1341,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knightPrefab: {fileID: 5552173422719195480, guid: 1556446ab7591b04981ef2d57fa2bb38, type: 3}
-  pawnPrefab: {fileID: 723849099061854382, guid: 5db2c6abec778904a8e88a30c0a525b0, type: 3}
+  attackPawnPrefab: {fileID: 723849099061854382, guid: 5db2c6abec778904a8e88a30c0a525b0, type: 3}
+  guardPawnPrefab: {fileID: 1823270790283189057, guid: a3499a79a325af94a8a426199df43a35, type: 3}
 --- !u!114 &643691326
 MonoBehaviour:
   m_ObjectHideFlags: 0

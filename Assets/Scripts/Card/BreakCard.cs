@@ -19,7 +19,7 @@ public class BreakCard : MonoBehaviour, Card{
         int x = playerMovement.getX(), y = playerMovement.getY();
         int ex = enemyMovement.getX(), ey = enemyMovement.getY();
         if(y < 3){
-            floorController.get(x, y + 1, true).GetComponent<FloorStatus>().takeDamage(100);
+            floorController.get(x, y + 1, true).GetComponent<FloorStatus>().takeDamage(100, "Enemy");
             Vector3 position = floorController.getPosition(x, y + 1, true);
             // Debug.Log(effectPrefab.GetComponent<Renderer>().bounds.size.y);
             GameObject obj = Instantiate(effectPrefab, position + new Vector3(0f, effectPrefab.GetComponent<Renderer>().bounds.size.y / 2f, 0f), Quaternion.identity);
@@ -29,7 +29,7 @@ public class BreakCard : MonoBehaviour, Card{
             Destroy(obj, 0.3f);
         }
         else{
-            floorController.get(x, 1, false).GetComponent<FloorStatus>().takeDamage(100);
+            floorController.get(x, 1, false).GetComponent<FloorStatus>().takeDamage(100, "Enemy");
             Vector3 position = floorController.getPosition(x, 1, false);
             // Debug.Log(effectPrefab.GetComponent<Renderer>().bounds.size.y);
             GameObject obj = Instantiate(effectPrefab, position + new Vector3(0f, effectPrefab.GetComponent<Renderer>().bounds.size.y / 2f, 0f), Quaternion.identity);

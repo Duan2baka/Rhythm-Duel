@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KngihtMovement : MonoBehaviour, Movement{
+public class KnightMovement : MonoBehaviour, Movement{
     public int getX(){
         return gameObject.GetComponent<KnightController>().currentX;
     }

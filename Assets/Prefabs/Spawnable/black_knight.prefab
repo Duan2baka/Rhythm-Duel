@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8234742909959416643}
   - component: {fileID: 950622602351989492}
   - component: {fileID: -6933656747794401370}
-  - component: {fileID: 5283335628646052263}
+  - component: {fileID: 8486040682553761898}
   m_Layer: 0
   m_Name: black_knight
   m_TagString: Enemy
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 10
   HP: 0
---- !u!114 &5283335628646052263
+--- !u!114 &8486040682553761898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,6 +137,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5552173422719195480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6432ce5f5a695c45b14d34f14825eef, type: 3}
+  m_Script: {fileID: 11500000, guid: 792522c159b08314b8e5791fb97ff865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

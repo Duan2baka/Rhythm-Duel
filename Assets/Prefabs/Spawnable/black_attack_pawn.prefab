@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 5544843918462619902}
   - component: {fileID: 3001907755936418392}
   - component: {fileID: 6071949879587993768}
+  - component: {fileID: 2654236616245908261}
+  - component: {fileID: -1584352465866455302}
   m_Layer: 0
-  m_Name: black_pawn
+  m_Name: black_attack_pawn
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,3 +101,29 @@ MonoBehaviour:
   currentY: 0
   currentSide: 0
   aimPrefab: {fileID: 6226344706890325615, guid: 5548d123fc7c1fe48a4b9aa8cfba8163, type: 3}
+--- !u!114 &2654236616245908261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723849099061854382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d828a7a5dfa01547870658b0aed8645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1584352465866455302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723849099061854382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7ad57a32c7070449e7253969d4362b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 10
+  HP: 0

@@ -70,9 +70,9 @@ public class FloorStatus : MonoBehaviour{
             health = maxHealth;
         }
     }
-    public void takeDamage(int value){
+    public void takeDamage(int value, string target){
         if(!status) return;
-        if(tmpObject = floorController.FindObjectOn(positionX, positionY, side)){
+        if(tmpObject = floorController.FindObjectOn_WithTag(positionX, positionY, side, target)){
             tmpObject.GetComponent<HealthController>().takeDamage(5);
             return;
         }
