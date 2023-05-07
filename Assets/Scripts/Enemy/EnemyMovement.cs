@@ -35,12 +35,6 @@ public class EnemyMovement : MonoBehaviour, Movement{
             positionController.set(gameObject, floorController.get(X, Y, false));
         }
     }
-
-    void Update(){
-        if(gameObject.GetComponent<HealthController>().getHP() <= 0){
-            SceneManager.LoadScene("Win");
-        }
-    }
     public int getX(){
         return X;
     }

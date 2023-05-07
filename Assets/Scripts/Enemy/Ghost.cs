@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ghost : MonoBehaviour, Enemy{
     int idleCounter = 0;
@@ -33,6 +34,10 @@ public class Ghost : MonoBehaviour, Enemy{
         enemyMovement = gameObject.GetComponent<EnemyMovement>();
     }
     private void Update() {
+        if(gameObject.GetComponent<HealthController>().getHP() <= 0){
+            MyData.boss2 = true;
+            SceneManager.LoadScene("Win");
+        }
         if(is_invisible && startHP != gameObject.GetComponent<HealthController>().getHP()){
             is_invisible = false;
             startHP = -1;

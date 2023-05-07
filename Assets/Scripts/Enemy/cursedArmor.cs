@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class cursedArmor : MonoBehaviour, Enemy{
     int idleCounter = 0;
@@ -26,6 +27,12 @@ public class cursedArmor : MonoBehaviour, Enemy{
         cooldown = new int[5]{0, 0, 0, 0, 0};
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         enemyMovement = gameObject.GetComponent<EnemyMovement>();
+    }
+    private void Update() {
+        if(gameObject.GetComponent<HealthController>().getHP() <= 0){
+            MyData.boss4 = true;
+            SceneManager.LoadScene("Win");
+        }
     }
     public void takeAction(){
         for(int i = 0; i <= 4; i ++)
