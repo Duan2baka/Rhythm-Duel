@@ -5,7 +5,7 @@ using UnityEngine;
 public class Lich : MonoBehaviour, Enemy{
     int idleCounter = 0;
     int X, Y, PlayerX, PlayerY;
-    public GameObject knightPrefab, attackPawnPrefab, guardPawnPrefab;
+    public GameObject knightPrefab, attackPawnPrefab, guardPawnPrefab, rookPrefab;
     private GameObject player;
     private bool is_invisible;
     PlayerMovement playerMovement;
@@ -14,7 +14,7 @@ public class Lich : MonoBehaviour, Enemy{
     PositionController positionController;
     CardPanelController cardPanelController;
     GameObject obj, tmp;
-    int[] cooldown, randomlist;
+    int[] cooldown;
     int[] fx, fy;
     private int rnd, cnt, startHP = -1;
     bool flag;
@@ -45,20 +45,15 @@ public class Lich : MonoBehaviour, Enemy{
             if(cooldown[i] != 0) cooldown[i] --;
         if(idleCounter != 0){
             idleCounter --;
-            //Debug.Log("enemyMovement: idle");
         }
         else{
-            // ****** get the position
             if(is_invisible){
                 gameObject.GetComponent<HealthController>().heal(3);
             }
-
             X = gameObject.GetComponent<EnemyMovement>().getX();
             Y = gameObject.GetComponent<EnemyMovement>().getY();
             PlayerX = playerMovement.getX();
             PlayerY = playerMovement.getY();
-
-            //**************************
             rnd = Random.Range(1, 10 + 1);
             if(rnd <= 5){
                 rnd = Random.Range(1, 4 + 1);
@@ -85,6 +80,23 @@ public class Lich : MonoBehaviour, Enemy{
                     cooldown[2] = 10;
                 }
                 else if(rnd == 4 && cooldown[3] == 0){ /// 4
+                    cnt = 0;
+                    for(int i = 1; i <= 3; i ++)
+                        for(int j = 1; j <= 3; j ++)
+                            if(floorController.isAccessable(i, j, false)) cnt ++;
+                    rnd = Random.Range(1, cnt + 1);
+                    cnt = 0;
+                    for(int i = 1; i <= 3; i ++)
+                        for(int j = 1; j <= 3; j ++){
+                            if(!floorController.isAccessable(i, j, false)) continue;
+                            cnt ++;
+                            if(rnd == cnt){
+                                obj = Instantiate(rookPrefab, floorController.getPosition(i, j, true), Quaternion.identity);
+                                obj.GetComponent<RookController>().init(-1, "Player", i, j, false, 10);
+                            }
+                        }
+                    idleCounter = 3;
+                    cooldown[3] = 10;
                 }
                 else randomMoveAdjacent(X, Y);
             }
@@ -92,7 +104,6 @@ public class Lich : MonoBehaviour, Enemy{
                 randomMoveAdjacent(X, Y);
                 idleCounter = 1;
             }
-            
         }
     }
     private void randomMove(int x, int y){
