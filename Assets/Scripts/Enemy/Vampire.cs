@@ -5,17 +5,17 @@ using UnityEngine;
 public class Vampire : MonoBehaviour, Enemy{
     int idleCounter = 0;
     int X, Y, PlayerX, PlayerY;
-    public GameObject knightPrefab, attackPawnPrefab, guardPawnPrefab, rookPrefab;
+    public GameObject batPrefab, spawnCircle;
     private GameObject player;
     PlayerMovement playerMovement;
     EnemyMovement enemyMovement;
     FloorController floorController;
     PositionController positionController;
     CardPanelController cardPanelController;
-    GameObject obj, tmp;
+    GameObject obj, tmp, spawnedCircle;
     int[] cooldown;
     int[] fx, fy;
-    private int rnd, cnt;
+    private int rnd, cnt, spawnPeriod;
     bool flag;
     void Start(){
         flag = false;
@@ -33,7 +33,19 @@ public class Vampire : MonoBehaviour, Enemy{
     public void takeAction(){
         for(int i = 0; i <= 4; i ++)
             if(cooldown[i] != 0) cooldown[i] --;
-        if(idleCounter != 0){
+        if(spawnPeriod > 0){
+            spawnPeriod --;
+            if(spawnPeriod % 2 == 1){
+                rnd = Random.Range(1, 4);
+                obj = Instantiate(batPrefab, transform.position, Quaternion.identity);
+                obj.GetComponent<ProjectileItem>().throwItem(rnd,
+                3, false, 10, 1.1f, -1, "Player");
+            }
+            if(spawnPeriod == 0){
+                Destroy(spawnedCircle, 0.3f);
+            }
+        }
+        else if(idleCounter != 0){
             idleCounter --;
         }
         else{
@@ -41,16 +53,22 @@ public class Vampire : MonoBehaviour, Enemy{
             Y = gameObject.GetComponent<EnemyMovement>().getY();
             PlayerX = playerMovement.getX();
             PlayerY = playerMovement.getY();
-            rnd = Random.Range(1, 10 + 1);
+            rnd = Random.Range(1, 10 + 1);/*
             if(rnd <= 5){
                 rnd = Random.Range(1, 4 + 1);
                 // Debug.Log(rnd);  
                 if(rnd == 1 && cooldown[0] == 0){ /// 1
                     playerMovement.setReverse(3);
                     idleCounter = 3;
-                    cooldown[1] = 10;
+                    cooldown[0] = 10;
                 }
                 else if(rnd == 2 && cooldown[1] == 0){ /// 2
+                    spawnPeriod = 8;
+                    spawnedCircle = Instantiate(spawnCircle, transform.position - new Vector3(
+                    0f, - gameObject.GetComponent<BoxCollider2D>().size.y / 2f, 0f)
+                    , Quaternion.identity);
+                    spawnedCircle.GetComponent<MagicCircleController>().init(gameObject);
+                    cooldown[1] = 20;
                 }
                 else if(rnd == 3 && cooldown[2] == 0){ /// 3
                 }
@@ -61,7 +79,14 @@ public class Vampire : MonoBehaviour, Enemy{
             else{
                 randomMoveAdjacent(X, Y);
                 idleCounter = 1;
-            }
+            }*/
+            
+                    spawnPeriod = 8;
+                    spawnedCircle = Instantiate(spawnCircle, transform.position - new Vector3(
+                    0f, - gameObject.GetComponent<BoxCollider2D>().size.y / 2f, 0f)
+                    , Quaternion.identity);
+                    spawnedCircle.GetComponent<MagicCircleController>().init(gameObject);
+                    cooldown[1] = 20;
         }
     }
     private void randomMove(int x, int y){

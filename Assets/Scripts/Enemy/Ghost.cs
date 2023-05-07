@@ -89,7 +89,7 @@ public class Ghost : MonoBehaviour, Enemy{
                         obj.GetComponent<ProjectileItem>().throwItem(2,
                         3, false, 10, 1.1f, -1, "Player");
                     }
-                    cooldown[2] = 10;
+                    cooldown[0] = 10;
                     idleCounter = 5;
                 }
                 else if(rnd == 2 && cooldown[1] == 0){ /// 2

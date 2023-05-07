@@ -2124,10 +2124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4fb834717e18d4e8292f6858b3a670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knightPrefab: {fileID: 0}
-  attackPawnPrefab: {fileID: 0}
-  guardPawnPrefab: {fileID: 0}
-  rookPrefab: {fileID: 0}
+  batPrefab: {fileID: 8312883054259742148, guid: 46f8bc830f60bbf49b7d9a4a787beec6, type: 3}
+  spawnCircle: {fileID: 1300785945792942980, guid: f89b2e276c95bfe4ab0b741d03af006e, type: 3}
 --- !u!1 &930128006
 GameObject:
   m_ObjectHideFlags: 0

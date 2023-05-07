@@ -50,7 +50,7 @@ public class ProjectileItem : MonoBehaviour{
                 }
             }
             tmp = floorController.get(currentX, currentY, currentSide);
-            if(!tmp.GetComponent<FloorStatus>().getStatus() || !tmp.GetComponent<FloorStatus>().getBlocked()) break;
+            if(!tmp.GetComponent<FloorStatus>().getStatus() || tmp.GetComponent<FloorStatus>().getBlocked()) break;
             transform.position = floorController.getPosition(currentX, currentY, currentSide);
             obj = floorController.FindObjectOn_WithTag(currentX, currentY, currentSide, tag);
             if(obj){
