@@ -44,7 +44,7 @@ public class RhythmController : MonoBehaviour{
     void Update(){
         tot += Time.deltaTime;
         counter += Time.deltaTime;
-        if(Input.GetKeyDown(KeyCode.Q)){
+        if(Input.GetKeyDown(KeyCode.C)){
             Debug.Log("current: " + tot);
             nums.Add(tot);
             float sum = 0;
