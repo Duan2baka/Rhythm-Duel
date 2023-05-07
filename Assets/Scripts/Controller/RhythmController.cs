@@ -33,24 +33,12 @@ public class RhythmController : MonoBehaviour{
         musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
         timeGap = musicController.timeGap;
         firstRhythmSpawn = musicController.firstRhythmSpawn;
-        Pos = new Vector3(bar.rect.width, 0, 0);
+        Pos = GameObject.FindGameObjectWithTag("spawn").transform.position;
         var tmp1 = Instantiate(emptyObject, Pos, Quaternion.identity);
         tmp1.GetComponent<RectTransform>().SetParent(bar, false);
         speed = (tmp1.transform.position.x - trigger.transform.position.x) / movePeriod;
         nums = new List<float>();
         //Debug.Log(trigger.transform.position.x);
-    }
-    private bool IsOverlap(RectTransform rect1, RectTransform rect2){
-        Vector3[] corners1 = new Vector3[4];
-        rect1.GetWorldCorners(corners1);
-        Vector3[] corners2 = new Vector3[4];
-        rect2.GetWorldCorners(corners2);
-        Rect r1 = new Rect(corners1[0].x, corners1[0].y, rect1.rect.width, rect1.rect.height);
-        Rect r2 = new Rect(corners2[0].x, corners2[0].y, rect2.rect.width, rect2.rect.height);
-
-        if (r1.x + r1.width < r2.x || r1.x > r2.x + r2.width || r1.y + r1.height < r2.y || r1.y > r2.y + r2.height)
-            return false;
-        else return true;
     }
 
     void Update(){
@@ -76,10 +64,15 @@ public class RhythmController : MonoBehaviour{
         if(counter >= timeGap){
             counter = 0f;
             cnt++;
-            Pos = new Vector3(bar.rect.width, 0, 0);
+            /*Pos = new Vector3(bar.rect.width, 0, 0);
             var tmp1 = Instantiate(prefab, Pos, Quaternion.identity);
             tmp1.GetComponent<RectTransform>().SetParent(bar, false);
             tmp1.GetComponent<RhythmPointManager>().init();
+            tmp1.name = "RhythmPoint " + cnt;*/
+            Pos = GameObject.FindGameObjectWithTag("spawn").transform.position;
+            var tmp1 = Instantiate(prefab, Pos, Quaternion.identity);
+            //tmp1.GetComponent<RectTransform>().SetParent(bar, false);
+            //tmp1.GetComponent<RhythmPointManager>().init();
             tmp1.name = "RhythmPoint " + cnt;
         }
         Rhythms = GameObject.FindGameObjectsWithTag("RhythmPoint");
@@ -87,7 +80,7 @@ public class RhythmController : MonoBehaviour{
         tmp = null;
         foreach(GameObject entity in Rhythms){
             entity.transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
-            bool flag = IsOverlap(entity.GetComponent<RectTransform>(), trigger.GetComponent<RectTransform>());
+            bool flag = entity.GetComponent<Renderer>().bounds.Intersects(trigger.GetComponent<Renderer>().bounds);
             if(flag){
                 OK = true;
                 if(tmp == null) tmp = entity;
