@@ -19,6 +19,7 @@ public class PauseController : MonoBehaviour{
     private Transform imagePanel;
     private Transform selectedObject;
     private RectTransform selectedContent;
+    private MusicController musicController;
 
     void Start(){
         Time.timeScale = 1f;
@@ -32,6 +33,7 @@ public class PauseController : MonoBehaviour{
         title = pausePanel.transform.Find("Image/Title/Text").GetComponent<Text>();
         description = pausePanel.transform.Find("Image/Title/Description/Text").GetComponent<Text>();
         scrollView = contentPanel.GetComponent<ScrollRect>();
+        musicController = GameObject.FindGameObjectWithTag("MusicController").GetComponent<MusicController>();
     }
     void Update(){
         if(!isPaused) return;
@@ -48,11 +50,13 @@ public class PauseController : MonoBehaviour{
 
     public void keyDown(){
         if(isPaused){
+            if(musicController.audioSource) musicController.audioSource.Play();
             Time.timeScale = 1f;
             isPaused = false;
             pausePanel.SetActive(false);
         }
         else{
+            if(musicController.audioSource) musicController.audioSource.Pause();
             Time.timeScale = 0f;
             isPaused = true;
             pausePanel.SetActive(true);

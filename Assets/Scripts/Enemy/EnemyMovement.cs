@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyMovement : MonoBehaviour, Movement{
     public int InitialX = 2;
@@ -36,7 +37,9 @@ public class EnemyMovement : MonoBehaviour, Movement{
     }
 
     void Update(){
-        
+        if(gameObject.GetComponent<HealthController>().getHP() <= 0){
+            SceneManager.LoadScene("Win");
+        }
     }
     public int getX(){
         return X;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour, Movement{
     public int InitialX = 2;
@@ -35,6 +36,9 @@ public class PlayerMovement : MonoBehaviour, Movement{
     }
 
     void Update(){// cast card
+        if(gameObject.GetComponent<HealthController>().getHP() <= 0){
+            SceneManager.LoadScene("GameOver");
+        }
         if(Input.GetKeyDown(KeyCode.Escape)){
             pauseController.keyDown();
         }
@@ -45,6 +49,7 @@ public class PlayerMovement : MonoBehaviour, Movement{
                 if(!cardPanelController.playCard(0, ref manaManager.currentMana)){
                     rhythmController.operation(false);
                 }
+                if(reverseCounter > 0) reverseCounter --;
             }
         }
         else if(Input.GetMouseButtonDown(1)){
@@ -53,6 +58,7 @@ public class PlayerMovement : MonoBehaviour, Movement{
                 if(!cardPanelController.playCard(1, ref manaManager.currentMana)){
                     rhythmController.operation(false);
                 }
+                if(reverseCounter > 0) reverseCounter --;
             }
         }
         else if(Input.GetKeyDown(KeyCode.Q)){
@@ -61,6 +67,7 @@ public class PlayerMovement : MonoBehaviour, Movement{
                 if(!cardPanelController.playCard(2, ref manaManager.currentMana)){
                     rhythmController.operation(false);
                 }
+                if(reverseCounter > 0) reverseCounter --;
             }
         }
         else if(Input.GetKeyDown(KeyCode.E)){
@@ -69,6 +76,7 @@ public class PlayerMovement : MonoBehaviour, Movement{
                 if(!cardPanelController.playCard(3, ref manaManager.currentMana)){
                     rhythmController.operation(false);
                 }
+                if(reverseCounter > 0) reverseCounter --;
             }
         }
         else if(Input.GetKeyDown(KeyCode.A)){
